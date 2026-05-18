@@ -1,0 +1,778 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="https://fonts.googleapis.com/css2?family=Rye&family=Josefin+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Josefin Sans', sans-serif;
+    background: #1a0f00;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* WOOD TEXTURE BACKGROUND */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background:
+      repeating-linear-gradient(
+        92deg,
+        transparent,
+        transparent 40px,
+        rgba(0,0,0,0.08) 40px,
+        rgba(0,0,0,0.08) 42px
+      ),
+      repeating-linear-gradient(
+        180deg,
+        transparent,
+        transparent 3px,
+        rgba(255,255,255,0.015) 3px,
+        rgba(255,255,255,0.015) 4px
+      ),
+      linear-gradient(170deg, #3d1f00 0%, #1a0f00 40%, #2a1500 70%, #0f0800 100%);
+    z-index: 0;
+  }
+
+  .dust {
+    position: fixed;
+    inset: 0;
+    background: radial-gradient(ellipse at 50% 100%, rgba(180,100,20,0.15) 0%, transparent 70%);
+    z-index: 0;
+    pointer-events: none;
+  }
+
+  /* SCREEN MANAGEMENT */
+  #screen-home, #screen-guest, #screen-invitation {
+    position: relative;
+    z-index: 1;
+    display: none;
+    min-height: 100vh;
+  }
+  #screen-home { display: flex; }
+
+  /* ======================== HOME SCREEN ======================== */
+  #screen-home {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+  }
+
+  .wanted-frame {
+    border: 3px solid #c8860a;
+    border-radius: 4px;
+    padding: 2rem 2.5rem 2.5rem;
+    max-width: 700px;
+    width: 100%;
+    background: rgba(40, 20, 0, 0.85);
+    box-shadow: 0 0 0 1px #7a4e0a, 0 0 40px rgba(200,100,10,0.2), inset 0 0 60px rgba(0,0,0,0.4);
+    text-align: center;
+    position: relative;
+  }
+
+  .frame-corner {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    border-color: #c8860a;
+    border-style: solid;
+  }
+  .frame-corner.tl { top: 6px; left: 6px; border-width: 2px 0 0 2px; }
+  .frame-corner.tr { top: 6px; right: 6px; border-width: 2px 2px 0 0; }
+  .frame-corner.bl { bottom: 6px; left: 6px; border-width: 0 0 2px 2px; }
+  .frame-corner.br { bottom: 6px; right: 6px; border-width: 0 2px 2px 0; }
+
+  .star-badge {
+    font-size: 2.5rem;
+    display: block;
+    margin-bottom: 0.5rem;
+    filter: drop-shadow(0 0 8px rgba(200,134,10,0.6));
+    animation: starPulse 3s ease-in-out infinite;
+  }
+
+  @keyframes starPulse {
+    0%, 100% { filter: drop-shadow(0 0 8px rgba(200,134,10,0.6)); }
+    50% { filter: drop-shadow(0 0 20px rgba(200,134,10,0.9)); }
+  }
+
+  .title-wanted {
+    font-family: 'Rye', serif;
+    font-size: clamp(2rem, 6vw, 3.5rem);
+    color: #c8860a;
+    letter-spacing: 0.1em;
+    line-height: 1;
+    text-shadow: 2px 2px 0 #3d1f00, 0 0 20px rgba(200,134,10,0.4);
+  }
+
+  .subtitle-soiree {
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: clamp(0.9rem, 3vw, 1.3rem);
+    color: #e8c878;
+    letter-spacing: 0.4em;
+    text-transform: uppercase;
+    margin: 0.5rem 0 1.5rem;
+    font-weight: 300;
+  }
+
+  .divider {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin: 1rem 0;
+    color: #7a4e0a;
+  }
+  .divider::before, .divider::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, #7a4e0a);
+  }
+  .divider::after { background: linear-gradient(90deg, #7a4e0a, transparent); }
+
+  .event-info {
+    color: #c8a060;
+    font-size: 0.95rem;
+    letter-spacing: 0.15em;
+    margin-bottom: 0.3rem;
+    font-weight: 300;
+  }
+
+  .event-date {
+    font-family: 'Rye', serif;
+    font-size: 1.4rem;
+    color: #e8c878;
+    margin-bottom: 1.5rem;
+  }
+
+  .guests-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 12px;
+    margin-top: 1.5rem;
+  }
+
+  .guest-btn {
+    background: rgba(60, 30, 0, 0.8);
+    border: 1.5px solid #7a4e0a;
+    border-radius: 3px;
+    padding: 14px 12px;
+    cursor: pointer;
+    transition: all 0.25s;
+    text-align: center;
+    font-family: 'Josefin Sans', sans-serif;
+  }
+
+  .guest-btn:hover {
+    background: rgba(100, 55, 5, 0.9);
+    border-color: #c8860a;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 20px rgba(200,134,10,0.25);
+  }
+
+  .guest-avatar {
+    font-size: 1.8rem;
+    display: block;
+    margin-bottom: 6px;
+  }
+
+  .guest-name {
+    font-family: 'Rye', serif;
+    font-size: 0.95rem;
+    color: #e8c878;
+    display: block;
+    margin-bottom: 3px;
+  }
+
+  .guest-alias {
+    font-size: 0.72rem;
+    color: #9a7040;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    display: block;
+  }
+
+  /* ======================== GUEST UNLOCK SCREEN ======================== */
+  #screen-guest {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+  }
+
+  #screen-guest.active { display: flex; }
+
+  .lock-frame {
+    border: 2px solid #7a4e0a;
+    border-radius: 4px;
+    padding: 2.5rem;
+    max-width: 420px;
+    width: 100%;
+    background: rgba(30, 15, 0, 0.92);
+    box-shadow: 0 0 0 1px rgba(200,134,10,0.2), 0 20px 60px rgba(0,0,0,0.6);
+    text-align: center;
+  }
+
+  .back-btn {
+    background: none;
+    border: 1px solid #7a4e0a;
+    color: #9a7040;
+    padding: 6px 14px;
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 0.8rem;
+    letter-spacing: 0.15em;
+    cursor: pointer;
+    border-radius: 2px;
+    margin-bottom: 1.5rem;
+    text-transform: uppercase;
+    transition: all 0.2s;
+  }
+  .back-btn:hover { border-color: #c8860a; color: #c8860a; }
+
+  .lock-avatar { font-size: 3rem; margin-bottom: 0.5rem; display: block; }
+
+  .lock-name {
+    font-family: 'Rye', serif;
+    font-size: 1.8rem;
+    color: #c8860a;
+    margin-bottom: 0.3rem;
+  }
+
+  .lock-alias {
+    font-size: 0.8rem;
+    color: #9a7040;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    margin-bottom: 1.5rem;
+  }
+
+  .lock-instruction {
+    color: #c8a060;
+    font-size: 0.9rem;
+    letter-spacing: 0.1em;
+    margin-bottom: 1.2rem;
+  }
+
+  .date-input-group {
+    display: flex;
+    gap: 8px;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 1rem;
+  }
+
+  .date-input-group input {
+    background: rgba(60,30,0,0.6);
+    border: 1.5px solid #7a4e0a;
+    border-radius: 3px;
+    color: #e8c878;
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 1.2rem;
+    text-align: center;
+    padding: 8px 0;
+    transition: border-color 0.2s;
+  }
+
+  .date-input-group input:focus { outline: none; border-color: #c8860a; }
+  .date-input-group input::placeholder { color: #5a3a1a; }
+  #inp-day, #inp-month { width: 56px; }
+  #inp-year { width: 76px; }
+
+  .date-sep { color: #7a4e0a; font-size: 1.3rem; font-weight: 600; }
+
+  .unlock-btn {
+    background: linear-gradient(180deg, #c8860a, #8a5a05);
+    border: none;
+    border-radius: 3px;
+    color: #1a0f00;
+    font-family: 'Rye', serif;
+    font-size: 1rem;
+    padding: 12px 32px;
+    cursor: pointer;
+    letter-spacing: 0.15em;
+    width: 100%;
+    transition: all 0.2s;
+    margin-top: 0.5rem;
+  }
+  .unlock-btn:hover { background: linear-gradient(180deg, #e0960c, #a06a08); transform: translateY(-1px); }
+  .unlock-btn:active { transform: translateY(0); }
+
+  .error-msg {
+    color: #e05050;
+    font-size: 0.82rem;
+    letter-spacing: 0.1em;
+    margin-top: 0.8rem;
+    min-height: 1.2em;
+    display: none;
+  }
+
+  .error-msg.visible { display: block; }
+
+  /* ======================== INVITATION SCREEN ======================== */
+  #screen-invitation { flex-direction: column; align-items: center; padding: 2rem; }
+  #screen-invitation.active { display: flex; }
+
+  .invitation-wrapper {
+    max-width: 600px;
+    width: 100%;
+    margin: 0 auto;
+  }
+
+  .inv-top-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+  }
+
+  /* INVITATION CARD — placeholder pour le vrai design */
+  .invitation-card {
+    border: 2px solid #c8860a;
+    border-radius: 4px;
+    background: rgba(40,20,0,0.9);
+    box-shadow: 0 0 0 1px #7a4e0a, 0 20px 60px rgba(0,0,0,0.6), inset 0 0 40px rgba(0,0,0,0.3);
+    overflow: hidden;
+    position: relative;
+  }
+
+  .inv-banner {
+    background: linear-gradient(135deg, #3d1f00, #1a0f00);
+    padding: 2rem;
+    text-align: center;
+    border-bottom: 1px solid #7a4e0a;
+    position: relative;
+  }
+
+  .inv-banner::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: repeating-linear-gradient(
+      90deg, transparent, transparent 60px,
+      rgba(200,134,10,0.03) 60px, rgba(200,134,10,0.03) 62px
+    );
+  }
+
+  .inv-you-are {
+    font-size: 0.75rem;
+    letter-spacing: 0.5em;
+    color: #9a7040;
+    text-transform: uppercase;
+    margin-bottom: 0.5rem;
+  }
+
+  .inv-character {
+    font-family: 'Rye', serif;
+    font-size: clamp(1.8rem, 5vw, 2.8rem);
+    color: #c8860a;
+    text-shadow: 2px 2px 0 #3d1f00;
+    line-height: 1.1;
+  }
+
+  .inv-avatar-big { font-size: 4rem; margin: 1rem 0; display: block; }
+
+  .inv-body {
+    padding: 1.5rem 2rem 2rem;
+  }
+
+  .inv-details-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .inv-detail-box {
+    background: rgba(60,30,0,0.5);
+    border: 1px solid rgba(122,78,10,0.4);
+    border-radius: 3px;
+    padding: 10px 14px;
+  }
+
+  .inv-detail-label {
+    font-size: 0.68rem;
+    color: #9a7040;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    display: block;
+    margin-bottom: 4px;
+  }
+
+  .inv-detail-value {
+    font-family: 'Rye', serif;
+    font-size: 1rem;
+    color: #e8c878;
+  }
+
+  .inv-dress-code {
+    border: 1px solid rgba(200,134,10,0.3);
+    border-radius: 3px;
+    padding: 14px;
+    text-align: center;
+    background: rgba(200,134,10,0.05);
+    margin-bottom: 1.5rem;
+  }
+
+  .inv-dress-label {
+    font-size: 0.72rem;
+    color: #9a7040;
+    letter-spacing: 0.4em;
+    text-transform: uppercase;
+    margin-bottom: 6px;
+    display: block;
+  }
+
+  .inv-dress-text {
+    color: #e8c878;
+    font-size: 0.92rem;
+    line-height: 1.6;
+    font-weight: 300;
+  }
+
+  .inv-placeholder-note {
+    border: 1px dashed #7a4e0a;
+    border-radius: 3px;
+    padding: 1rem;
+    text-align: center;
+    color: #7a4e0a;
+    font-size: 0.82rem;
+    letter-spacing: 0.1em;
+    font-style: italic;
+  }
+
+  .inv-signature {
+    text-align: center;
+    margin-top: 1.5rem;
+    padding-top: 1rem;
+    border-top: 1px solid rgba(122,78,10,0.3);
+  }
+
+  .inv-sig-text {
+    font-family: 'Rye', serif;
+    font-size: 1.1rem;
+    color: #c8860a;
+  }
+
+  .confetti-pop {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 100;
+    display: none;
+  }
+  .confetti-pop.active { display: block; }
+</style>
+</head>
+<body>
+
+<div class="dust"></div>
+<canvas class="confetti-pop" id="confetti-canvas"></canvas>
+
+<!-- ===== SCREEN HOME ===== -->
+<div id="screen-home">
+  <div class="wanted-frame">
+    <div class="frame-corner tl"></div>
+    <div class="frame-corner tr"></div>
+    <div class="frame-corner bl"></div>
+    <div class="frame-corner br"></div>
+
+    <span class="star-badge">⭐</span>
+    <div class="title-wanted">Wild West Night</div>
+    <div class="subtitle-soiree">— Soirée Invitation —</div>
+
+    <div class="divider">✦</div>
+
+    <div class="event-info">Samedi</div>
+    <div class="event-date">21 Juin 2025</div>
+    <div class="event-info" style="margin-bottom:0.2rem">Chez Laurent &amp; Friends</div>
+    <div class="event-info" style="font-size:0.8rem; margin-bottom:1.5rem">Le Havre, Normandie</div>
+
+    <div class="divider">✦</div>
+
+    <div style="color:#9a7040; font-size:0.78rem; letter-spacing:0.25em; text-transform:uppercase; margin: 1rem 0 0.5rem">Sélectionne ton personnage</div>
+
+    <div class="guests-grid">
+      <button class="guest-btn" onclick="showGuest(0)">
+        <span class="guest-avatar">🤠</span>
+        <span class="guest-name">Invité 1</span>
+        <span class="guest-alias">The Sheriff</span>
+      </button>
+      <button class="guest-btn" onclick="showGuest(1)">
+        <span class="guest-avatar">🎸</span>
+        <span class="guest-name">Invité 2</span>
+        <span class="guest-alias">The Outlaw</span>
+      </button>
+      <button class="guest-btn" onclick="showGuest(2)">
+        <span class="guest-avatar">🌵</span>
+        <span class="guest-name">Invité 3</span>
+        <span class="guest-alias">The Drifter</span>
+      </button>
+      <button class="guest-btn" onclick="showGuest(3)">
+        <span class="guest-avatar">🐎</span>
+        <span class="guest-name">Invité 4</span>
+        <span class="guest-alias">The Cowboy</span>
+      </button>
+      <button class="guest-btn" onclick="showGuest(4)">
+        <span class="guest-avatar">🔫</span>
+        <span class="guest-name">Invité 5</span>
+        <span class="guest-alias">The Gunslinger</span>
+      </button>
+      <button class="guest-btn" onclick="showGuest(5)">
+        <span class="guest-avatar">🎩</span>
+        <span class="guest-name">Invité 6</span>
+        <span class="guest-alias">The Gambler</span>
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- ===== SCREEN GUEST (CODE) ===== -->
+<div id="screen-guest">
+  <button class="back-btn" onclick="showHome()">← Retour</button>
+  <div class="lock-frame">
+    <span class="lock-avatar" id="lock-avatar">🤠</span>
+    <div class="lock-name" id="lock-name">Invité 1</div>
+    <div class="lock-alias" id="lock-alias">The Sheriff</div>
+
+    <div style="font-size:2rem; margin: 0.5rem 0; color:#7a4e0a">🔒</div>
+
+    <div class="lock-instruction">Entre ta date d'anniversaire</div>
+
+    <div class="date-input-group">
+      <input type="number" id="inp-day" placeholder="JJ" min="1" max="31" />
+      <span class="date-sep">/</span>
+      <input type="number" id="inp-month" placeholder="MM" min="1" max="12" />
+      <span class="date-sep">/</span>
+      <input type="number" id="inp-year" placeholder="AAAA" min="1900" max="2020" />
+    </div>
+
+    <div class="error-msg" id="error-msg">Code invalide — mauvaise piste, cowboy 🤠</div>
+
+    <button class="unlock-btn" onclick="tryUnlock()">Ouvrir mon invitation</button>
+  </div>
+</div>
+
+<!-- ===== SCREEN INVITATION ===== -->
+<div id="screen-invitation">
+  <div class="invitation-wrapper">
+    <div class="inv-top-bar">
+      <button class="back-btn" onclick="showHome()">← Retour au saloon</button>
+      <span style="color:#9a7040; font-size:0.8rem; letter-spacing:0.1em">⭐ Bienvenue, partenaire</span>
+    </div>
+
+    <div class="invitation-card">
+      <div class="inv-banner">
+        <div class="inv-you-are">Tu es</div>
+        <div class="inv-character" id="inv-character">The Sheriff</div>
+        <span class="inv-avatar-big" id="inv-avatar-big">🤠</span>
+      </div>
+
+      <div class="inv-body">
+        <div class="inv-details-grid">
+          <div class="inv-detail-box">
+            <span class="inv-detail-label">Date</span>
+            <span class="inv-detail-value">21 Juin 2025</span>
+          </div>
+          <div class="inv-detail-box">
+            <span class="inv-detail-label">Heure</span>
+            <span class="inv-detail-value">19h30</span>
+          </div>
+          <div class="inv-detail-box">
+            <span class="inv-detail-label">Lieu</span>
+            <span class="inv-detail-value" style="font-size:0.85rem">Le Havre</span>
+          </div>
+          <div class="inv-detail-box">
+            <span class="inv-detail-label">Dress Code</span>
+            <span class="inv-detail-value" style="font-size:0.85rem">Western 🤠</span>
+          </div>
+        </div>
+
+        <div class="inv-dress-code">
+          <span class="inv-dress-label">Ta mission, cowboy</span>
+          <div class="inv-dress-text" id="inv-mission">Personnalise ce texte pour chaque invité !</div>
+        </div>
+
+        <!-- ZONE PLACEHOLDER POUR TON DESIGN -->
+        <div class="inv-placeholder-note" id="inv-design-zone">
+          🎨 Zone pour ton design personnalisé —<br>
+          remplace ce bloc par une image ou ton HTML d'invitation
+        </div>
+
+        <div class="inv-signature">
+          <div class="inv-sig-text">⭐ Wild West Night ⭐</div>
+          <div style="color:#9a7040; font-size:0.75rem; letter-spacing:0.2em; margin-top:4px">Y'all better show up</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  const GUESTS = [
+    {
+      name: "Invité 1",
+      alias: "The Sheriff",
+      avatar: "🤠",
+      birthday: { day: 1, month: 1, year: 1990 }, // ← remplace par la vraie date
+      mission: "En tant que shérif, c'est TOI qui ouvres le bal. Arrive en premier et assure l'ordre du saloon !",
+      color: "#c8860a"
+    },
+    {
+      name: "Invité 2",
+      alias: "The Outlaw",
+      avatar: "🎸",
+      birthday: { day: 2, month: 2, year: 1991 },
+      mission: "L'outlaw de la soirée — ton rôle : créer le chaos musical. Playlist interdite ? Pas pour toi.",
+      color: "#c84040"
+    },
+    {
+      name: "Invité 3",
+      alias: "The Drifter",
+      avatar: "🌵",
+      birthday: { day: 3, month: 3, year: 1992 },
+      mission: "Mystérieux et insaisissable. Personne ne sait d'où tu viens… ni où tu iras cette nuit.",
+      color: "#40c880"
+    },
+    {
+      name: "Invité 4",
+      alias: "The Cowboy",
+      avatar: "🐎",
+      birthday: { day: 4, month: 4, year: 1993 },
+      mission: "Le vrai cowboy de la soirée. C'est toi qui ramènes la bouffe. On compte sur toi, partenaire.",
+      color: "#8060c8"
+    },
+    {
+      name: "Invité 5",
+      alias: "The Gunslinger",
+      avatar: "🔫",
+      birthday: { day: 5, month: 5, year: 1994 },
+      mission: "Le plus rapide du West. Ton défi : être le premier à vider son verre à chaque toast.",
+      color: "#c8a040"
+    },
+    {
+      name: "Invité 6",
+      alias: "The Gambler",
+      avatar: "🎩",
+      birthday: { day: 6, month: 6, year: 1995 },
+      mission: "Le joueur — tu organiseras les jeux de la soirée. Que le meilleur bluffeur gagne.",
+      color: "#40a0c8"
+    }
+  ];
+
+  let currentGuestIndex = 0;
+
+  function showHome() {
+    document.getElementById('screen-home').style.display = 'flex';
+    document.getElementById('screen-guest').classList.remove('active');
+    document.getElementById('screen-invitation').classList.remove('active');
+    document.getElementById('error-msg').classList.remove('visible');
+    document.getElementById('inp-day').value = '';
+    document.getElementById('inp-month').value = '';
+    document.getElementById('inp-year').value = '';
+  }
+
+  function showGuest(index) {
+    currentGuestIndex = index;
+    const g = GUESTS[index];
+    document.getElementById('lock-avatar').textContent = g.avatar;
+    document.getElementById('lock-name').textContent = g.name;
+    document.getElementById('lock-alias').textContent = g.alias;
+    document.getElementById('error-msg').classList.remove('visible');
+    document.getElementById('inp-day').value = '';
+    document.getElementById('inp-month').value = '';
+    document.getElementById('inp-year').value = '';
+    document.getElementById('screen-home').style.display = 'none';
+    document.getElementById('screen-guest').classList.add('active');
+  }
+
+  function tryUnlock() {
+    const g = GUESTS[currentGuestIndex];
+    const day = parseInt(document.getElementById('inp-day').value);
+    const month = parseInt(document.getElementById('inp-month').value);
+    const year = parseInt(document.getElementById('inp-year').value);
+
+    if (day === g.birthday.day && month === g.birthday.month && year === g.birthday.year) {
+      showInvitation(currentGuestIndex);
+    } else {
+      const err = document.getElementById('error-msg');
+      err.classList.add('visible');
+      document.getElementById('inp-day').style.borderColor = '#e05050';
+      document.getElementById('inp-month').style.borderColor = '#e05050';
+      document.getElementById('inp-year').style.borderColor = '#e05050';
+      setTimeout(() => {
+        document.getElementById('inp-day').style.borderColor = '';
+        document.getElementById('inp-month').style.borderColor = '';
+        document.getElementById('inp-year').style.borderColor = '';
+      }, 1200);
+    }
+  }
+
+  function showInvitation(index) {
+    const g = GUESTS[index];
+    document.getElementById('inv-character').textContent = g.alias;
+    document.getElementById('inv-avatar-big').textContent = g.avatar;
+    document.getElementById('inv-mission').textContent = g.mission;
+    document.getElementById('screen-guest').classList.remove('active');
+    document.getElementById('screen-invitation').classList.add('active');
+    launchConfetti(g.color);
+  }
+
+  // Auto-focus next input
+  document.getElementById('inp-day').addEventListener('input', function() {
+    if (this.value.length >= 2) document.getElementById('inp-month').focus();
+  });
+  document.getElementById('inp-month').addEventListener('input', function() {
+    if (this.value.length >= 2) document.getElementById('inp-year').focus();
+  });
+  document.getElementById('inp-year').addEventListener('keydown', function(e) {
+    if (e.key === 'Enter') tryUnlock();
+  });
+
+  // CONFETTI
+  function launchConfetti(accentColor) {
+    const canvas = document.getElementById('confetti-canvas');
+    const ctx = canvas.getContext('2d');
+    canvas.style.display = 'block';
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+
+    const colors = [accentColor, '#c8860a', '#e8c878', '#ffffff', '#c84040'];
+    const particles = Array.from({length: 90}, () => ({
+      x: Math.random() * canvas.width,
+      y: -10,
+      vx: (Math.random() - 0.5) * 4,
+      vy: Math.random() * 4 + 2,
+      size: Math.random() * 8 + 4,
+      color: colors[Math.floor(Math.random() * colors.length)],
+      rot: Math.random() * 360,
+      rotv: (Math.random() - 0.5) * 8
+    }));
+
+    let frame = 0;
+    function animate() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      particles.forEach(p => {
+        p.x += p.vx;
+        p.y += p.vy;
+        p.rot += p.rotv;
+        p.vy += 0.08;
+        ctx.save();
+        ctx.translate(p.x, p.y);
+        ctx.rotate(p.rot * Math.PI / 180);
+        ctx.fillStyle = p.color;
+        ctx.fillRect(-p.size/2, -p.size/4, p.size, p.size/2);
+        ctx.restore();
+      });
+      frame++;
+      if (frame < 140) requestAnimationFrame(animate);
+      else { ctx.clearRect(0,0,canvas.width,canvas.height); canvas.style.display='none'; }
+    }
+    animate();
+  }
+</script>
+</body>
+</html>
