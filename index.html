@@ -3,1093 +3,551 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<meta name="theme-color" content="#120900">
+<meta name="theme-color" content="#100700">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-
-<meta property="og:title" content="🤠 — Ton invitation t'attend, cowboy" />
-<meta property="og:description" content="Une soirée western comme le Far West n'en a jamais vu. Entre ton code secret pour découvrir ton personnage." />
+<meta property="og:title" content="🤠 — Ton avis de recherche t'attend, hors-la-loi" />
+<meta property="og:description" content="Wild West Night — Entre ton code secret pour découvrir ton crime." />
 <meta property="og:image" content="https://images.unsplash.com/photo-1544966503-7cc5ac882d4e?w=1200&h=630&fit=crop&q=80" />
-<meta property="og:image:width" content="1200" />
-<meta property="og:image:height" content="630" />
 <meta property="og:type" content="website" />
 <meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:title" content="🤠 — Ton invitation t'attend, cowboy" />
-<meta name="twitter:description" content="Une soirée western comme le Far West n'en a jamais vu. Entre ton code secret." />
-<meta name="twitter:image" content="https://images.unsplash.com/photo-1544966503-7cc5ac882d4e?w=1200&h=630&fit=crop&q=80" />
-
-<title>🤠 Wild West Night — Invitation</title>
-
-<link href="https://fonts.googleapis.com/css2?family=Rye&family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Josefin+Sans:wght@300;400;600&display=swap" rel="stylesheet">
-
+<title>🤠 Wild West Night — WANTED</title>
+<link href="https://fonts.googleapis.com/css2?family=Rye&family=UnifrakturMaguntia&family=Josefin+Sans:wght@300;400;600;700&family=Playfair+Display:ital@0;1&display=swap" rel="stylesheet">
 <style>
-/* ===== RESET & BASE ===== */
-*, *::before, *::after { margin:0; padding:0; box-sizing:border-box; -webkit-tap-highlight-color:transparent }
-html, body { width:100%; min-height:100vh; overflow-x:hidden; background:#120900; font-family:'Josefin Sans',sans-serif; }
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{width:100%;min-height:100vh;overflow-x:hidden;background:#100700;font-family:'Josefin Sans',sans-serif}
+:root{
+  --gold:#c8860a;--gold-l:#e8c878;--gold-p:#f5e4b0;--gold-d:#7a4e0a;--gold-vd:#3d2005;
+  --amber:#9a6318;--rust:#8a3a10;--blood:#5a1a0a;
+  --dk0:#080400;--dk1:#100700;--dk2:#180c00;--dk3:#221200;--dk4:#2e1800;
+  --text-lo:#6a4520;--text-mid:#9a7040;--text-hi:#c8a060;--text-top:#e8c878;
+  --bd:rgba(200,134,10,.25);--bd-s:rgba(200,134,10,.5);--bd-h:#7a4e0a;
+  --r:3px;--sh-gold:0 0 40px rgba(200,134,10,.12);
+}
+body::before{
+  content:'';position:fixed;inset:0;z-index:0;pointer-events:none;
+  background:repeating-linear-gradient(89.2deg,transparent,transparent 36px,rgba(0,0,0,.055) 36px,rgba(0,0,0,.055) 38px),
+    repeating-linear-gradient(90.8deg,transparent,transparent 52px,rgba(255,255,255,.012) 52px,rgba(255,255,255,.012) 53px),
+    linear-gradient(175deg,#080400 0%,#100700 30%,#1a0c00 55%,#0c0600 80%,#060300 100%);
+}
+body::after{
+  content:'';position:fixed;bottom:0;left:0;right:0;height:32vh;z-index:1;pointer-events:none;
+  background:linear-gradient(to top,#090500 0%,#0e0700 25%,transparent 100%);
+  clip-path:polygon(0% 100%,0% 58%,2% 52%,4% 46%,7% 38%,9% 30%,11% 22%,13% 16%,15% 22%,17% 30%,19% 26%,21% 18%,23% 10%,25% 5%,27% 10%,29% 18%,31% 24%,33% 30%,35% 24%,37% 16%,39% 8%,41% 2%,43% 8%,45% 16%,47% 22%,49% 28%,51% 22%,53% 14%,55% 8%,57% 4%,59% 8%,61% 14%,63% 20%,65% 26%,67% 20%,69% 14%,71% 20%,73% 28%,75% 22%,77% 15%,79% 20%,81% 28%,83% 34%,85% 28%,88% 22%,90% 30%,93% 40%,96% 48%,100% 42%,100% 100%);
+}
+#cv-bg,#cv-fx{position:fixed;inset:0;pointer-events:none}
+#cv-bg{z-index:2}#cv-fx{z-index:55}
 
-/* ===== CSS VARIABLES ===== */
-:root {
-  --gold: #c8860a;
-  --gold-light: #e8c878;
-  --gold-pale: #f5e4b0;
-  --gold-dim: #7a4e0a;
-  --amber: #9a6318;
-  --rust: #8a3a10;
-  --dark: #0c0600;
-  --dark-mid: #1a0d00;
-  --dark-warm: #241200;
-  --text-muted: #9a7040;
-  --text-body: #c8a060;
-  --border: rgba(200,134,10,0.3);
-  --border-strong: #7a4e0a;
-  --radius: 3px;
-  --shadow-gold: 0 0 30px rgba(200,134,10,0.15);
+#ribbon{
+  position:fixed;top:0;left:0;right:0;z-index:200;
+  background:linear-gradient(90deg,var(--dk0),rgba(22,11,0,.97),var(--dk0));
+  border-bottom:1px solid var(--bd);padding:5px 12px;
+  display:flex;align-items:center;justify-content:center;gap:8px;
 }
+.cd-lbl{font-size:.6rem;color:var(--text-lo);letter-spacing:.32em;text-transform:uppercase;white-space:nowrap}
+.cd-units{display:flex;gap:3px;align-items:center}
+.cd-b{background:rgba(40,20,0,.8);border:1px solid var(--bd);border-radius:2px;padding:2px 5px;min-width:32px;text-align:center}
+.cd-n{font-family:'Rye',serif;font-size:.82rem;color:var(--gold);display:block;line-height:1.1}
+.cd-u{font-size:.48rem;color:var(--text-lo);letter-spacing:.18em;text-transform:uppercase;display:block}
+.cd-sep{color:var(--gold-d);font-size:.85rem;margin-bottom:3px}
 
-/* ===== BACKGROUND: NIGHT SKY + DESERT ===== */
-body::before {
-  content:'';
-  position:fixed; inset:0; z-index:0; pointer-events:none;
-  background:
-    /* wood grain lines */
-    repeating-linear-gradient(89deg, transparent, transparent 38px, rgba(0,0,0,0.06) 38px, rgba(0,0,0,0.06) 40px),
-    repeating-linear-gradient(91deg, transparent, transparent 55px, rgba(255,255,255,0.015) 55px, rgba(255,255,255,0.015) 56px),
-    /* night gradient */
-    linear-gradient(175deg,
-      #0a0500 0%,
-      #120900 25%,
-      #1c0e00 50%,
-      #0e0700 75%,
-      #080400 100%
-    );
-}
+.scr{position:relative;z-index:10;min-height:100vh;display:none;flex-direction:column;align-items:center;justify-content:flex-start;padding:3.8rem 1rem 3rem}
+.scr.on{display:flex}
+@keyframes fadeUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+.scr.on>*{animation:fadeUp .45s ease-out both}
+.scr.on>*:nth-child(2){animation-delay:.06s}
+.scr.on>*:nth-child(3){animation-delay:.12s}
 
-/* Desert horizon silhouette */
-body::after {
-  content:'';
-  position:fixed; bottom:0; left:0; right:0; height:35vh; z-index:1; pointer-events:none;
-  background: linear-gradient(to top,
-    #0a0500 0%,
-    #0f0700 20%,
-    transparent 100%
-  );
-  clip-path: polygon(
-    0% 100%, 0% 55%, 3% 48%, 6% 52%, 8% 40%, 11% 35%,
-    14% 40%, 16% 38%, 18% 28%, 21% 22%, 23% 28%, 25% 32%,
-    27% 25%, 30% 18%, 32% 22%, 34% 30%, 37% 35%,
-    40% 30%, 42% 22%, 44% 15%, 46% 10%, 48% 15%,
-    50% 20%, 53% 28%, 55% 32%,
-    57% 25%, 60% 18%, 62% 14%, 64% 10%, 66% 14%,
-    68% 20%, 70% 28%, 72% 35%,
-    75% 28%, 78% 22%, 80% 28%, 83% 35%,
-    85% 30%, 87% 22%, 90% 28%, 93% 38%,
-    96% 45%, 100% 40%, 100% 100%
-  );
+.back{
+  align-self:flex-start;background:none;
+  border:1px solid rgba(122,78,10,.45);color:var(--text-mid);
+  padding:6px 13px;font-family:'Josefin Sans',sans-serif;font-size:.7rem;
+  letter-spacing:.22em;cursor:pointer;border-radius:var(--r);margin-bottom:1.1rem;
+  text-transform:uppercase;transition:all .2s;-webkit-user-select:none;user-select:none
 }
+.back:active{border-color:var(--gold);color:var(--gold)}
 
-/* ===== CANVASES ===== */
-#canvas-bg { position:fixed; inset:0; z-index:2; pointer-events:none; }
-#canvas-fx { position:fixed; inset:0; z-index:55; pointer-events:none; }
+#s-home{justify-content:flex-start}
+.poster{
+  width:100%;max-width:400px;
+  background:linear-gradient(160deg,#1c0d00 0%,#120800 50%,#1a0c00 100%);
+  border-radius:4px;position:relative;overflow:hidden;
+  box-shadow:0 0 0 1.5px var(--gold),0 0 0 3px #2e1600,0 0 0 5px var(--gold-d),0 30px 70px rgba(0,0,0,.85),var(--sh-gold);
+}
+.poster::after{
+  content:'';position:absolute;inset:0;z-index:1;pointer-events:none;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 300 300' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.04'/%3E%3C/svg%3E");
+  opacity:.5;mix-blend-mode:overlay;border-radius:4px
+}
+.poster::before{content:'';position:absolute;inset:0;z-index:2;pointer-events:none;background:radial-gradient(ellipse at 50% 50%,transparent 40%,rgba(0,0,0,.55) 100%);border-radius:4px}
 
-/* ===== SCREENS ===== */
-.screen {
-  position:relative; z-index:10;
-  min-height:100vh;
-  display:none; flex-direction:column;
-  align-items:center; justify-content:flex-start;
-  padding:1.5rem 1rem 3rem;
-}
-.screen.active { display:flex; }
+.p-head{background:var(--gold);padding:7px 0 6px;text-align:center;position:relative;z-index:3;box-shadow:0 3px 14px rgba(0,0,0,.6)}
+.p-head-t{font-family:'Rye',serif;font-size:.72rem;letter-spacing:.55em;color:#140800;text-transform:uppercase}
+.p-body{padding:1.4rem 1.5rem .2rem;position:relative;z-index:3}
+.p-star-row{display:flex;align-items:center;justify-content:center;gap:.5rem;margin-bottom:.3rem}
+.p-rule{flex:1;height:1px;background:linear-gradient(90deg,transparent,var(--gold-d),transparent)}
+.p-star{font-size:.95rem;animation:starPulse 2.5s ease-in-out infinite}
+@keyframes starPulse{0%,100%{filter:drop-shadow(0 0 3px rgba(200,134,10,.4))}50%{filter:drop-shadow(0 0 12px rgba(200,134,10,.9))}}
+.p-title{font-family:'Rye',serif;font-size:clamp(1.9rem,8.5vw,2.9rem);color:var(--gold);letter-spacing:.06em;line-height:1;text-align:center;text-shadow:3px 3px 0 #1a0800,0 0 50px rgba(200,134,10,.35);cursor:pointer;user-select:none}
+.p-title:active{transform:scale(.97)}
+.p-sub{font-size:.7rem;color:var(--text-hi);letter-spacing:.5em;text-transform:uppercase;margin-top:.35rem;text-align:center;font-weight:300}
+.p-evbar{border-top:1px solid var(--bd);border-bottom:1px solid var(--bd);padding:.55rem 0;margin:.85rem 0;display:flex;align-items:center;justify-content:center;gap:0;}
+.p-ev{flex:1;text-align:center}
+.p-ev-l{font-size:.55rem;color:var(--text-lo);letter-spacing:.3em;text-transform:uppercase;display:block;margin-bottom:2px}
+.p-ev-v{font-family:'Rye',serif;font-size:.88rem;color:var(--text-top)}
+.p-ev-div{color:var(--gold-d);font-size:1.1rem;padding:0 .3rem}
+.g-intro{font-size:.62rem;letter-spacing:.32em;color:var(--text-lo);text-transform:uppercase;text-align:center;margin:.7rem 0 .6rem}
+.gg{display:grid;grid-template-columns:1fr 1fr;gap:7px}
+.gb{background:rgba(35,17,0,.7);border:1px solid rgba(122,78,10,.4);border-radius:var(--r);padding:12px 8px 11px;cursor:pointer;text-align:center;transition:background .2s,border-color .22s,box-shadow .22s,transform .14s;-webkit-user-select:none;user-select:none;position:relative;overflow:hidden}
+.gb::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(200,134,10,.06),transparent);opacity:0;transition:opacity .2s}
+.gb:hover{border-color:var(--gold-d);background:rgba(55,27,0,.9);box-shadow:0 0 16px rgba(200,134,10,.1)}
+.gb:hover::before{opacity:1}
+.gb:active{transform:scale(.93)}
+.gb.lure{border-style:dashed;opacity:.7}
+.gb-av{font-size:1.6rem;display:block;margin-bottom:4px}
+.gb-name{font-family:'Rye',serif;font-size:.76rem;color:var(--text-top);display:block;margin-bottom:2px}
+.gb-alias{font-size:.58rem;color:var(--text-mid);letter-spacing:.2em;text-transform:uppercase;display:block}
+.gb-prime{font-size:.6rem;color:var(--gold);letter-spacing:.1em;display:block;margin-top:3px}
+.gb.lure .gb-prime{color:var(--text-lo)}
+.p-foot{border-top:1px solid var(--bd);margin:1rem 1.5rem 0;padding:.7rem 0 1.5rem;text-align:center;position:relative;z-index:3}
+.p-foot-t{font-size:.6rem;color:var(--text-lo);letter-spacing:.25em;text-transform:uppercase}
 
-/* ===== COUNTDOWN RIBBON ===== */
-#countdown-ribbon {
-  position:fixed; top:0; left:0; right:0; z-index:100;
-  background:linear-gradient(90deg, var(--dark), rgba(30,15,0,.97), var(--dark));
-  border-bottom:1px solid var(--border);
-  padding:5px 0;
-  text-align:center;
-  display:flex; align-items:center; justify-content:center; gap:6px;
-}
-.cd-label { font-size:.62rem; color:var(--text-muted); letter-spacing:.3em; text-transform:uppercase; }
-.cd-units { display:flex; gap:4px; align-items:center; }
-.cd-block {
-  background:rgba(50,25,0,.8); border:1px solid var(--border);
-  border-radius:2px; padding:2px 6px; min-width:34px; text-align:center;
-}
-.cd-num { font-family:'Rye',serif; font-size:.85rem; color:var(--gold); display:block; line-height:1.1; }
-.cd-unit { font-size:.5rem; color:var(--text-muted); letter-spacing:.2em; text-transform:uppercase; display:block; }
-.cd-sep { color:var(--gold-dim); font-size:.9rem; margin-top:-4px; }
+.lk-frame{border:1.5px solid var(--gold-d);border-radius:4px;padding:1.9rem 1.5rem 1.8rem;width:100%;max-width:360px;background:linear-gradient(155deg,rgba(22,11,0,.98),rgba(14,7,0,1));box-shadow:0 0 0 1px rgba(200,134,10,.1),0 0 0 4px rgba(15,7,0,.6),0 30px 70px rgba(0,0,0,.8),var(--sh-gold);text-align:center;position:relative;overflow:hidden}
+.lk-frame::before{content:'';position:absolute;inset:0;pointer-events:none;background:radial-gradient(ellipse at 50% 0%,rgba(200,134,10,.05) 0%,transparent 65%)}
+.lk-av{font-size:3rem;margin-bottom:.4rem;display:block}
+.lk-name{font-family:'Rye',serif;font-size:1.65rem;color:var(--gold);margin-bottom:.2rem}
+.lk-alias{font-size:.66rem;color:var(--text-mid);letter-spacing:.35em;text-transform:uppercase;margin-bottom:.2rem}
+.lk-prime{font-size:.72rem;color:var(--gold);letter-spacing:.1em;margin-bottom:.7rem;padding-bottom:.7rem;border-bottom:1px solid var(--bd)}
+.lk-icon{font-size:1.75rem;color:var(--gold-d);display:inline-block;animation:lockWobble 4s ease-in-out infinite;margin:.1rem 0 .5rem}
+@keyframes lockWobble{0%,100%{transform:rotate(0) scale(1)}20%{transform:rotate(-6deg) scale(1.06)}40%{transform:rotate(6deg) scale(1.06)}60%{transform:rotate(-3deg)}80%{transform:rotate(3deg)}}
+.lk-instr{color:var(--text-hi);font-size:.82rem;letter-spacing:.1em;margin-bottom:1rem;line-height:1.55}
+.lk-instr span{font-size:.7rem;color:var(--text-mid);display:block;margin-top:3px}
+.date-row{display:flex;gap:6px;justify-content:center;align-items:center;margin-bottom:.5rem}
+.date-row input{background:rgba(35,17,0,.85);border:1.5px solid rgba(122,78,10,.55);border-radius:var(--r);color:var(--text-top);font-family:'Josefin Sans',sans-serif;font-size:1.12rem;text-align:center;padding:10px 0;transition:border-color .2s,box-shadow .2s;-webkit-appearance:none;appearance:none}
+.date-row input:focus{outline:none;border-color:var(--gold);box-shadow:0 0 0 2px rgba(200,134,10,.14),0 0 10px rgba(200,134,10,.08)}
+.date-row input::placeholder{color:rgba(80,50,15,.65)}
+.date-row input::-webkit-outer-spin-button,.date-row input::-webkit-inner-spin-button{-webkit-appearance:none;margin:0}
+.date-row input[type=number]{-moz-appearance:textfield}
+#inp-d,#inp-m{width:52px}#inp-y{width:72px}
+.dsep{color:var(--gold-d);font-size:1.2rem;font-weight:700}
+.unlock-btn{background:linear-gradient(180deg,#d4920e 0%,#8a5a05 100%);border:none;border-radius:var(--r);color:#140900;font-family:'Rye',serif;font-size:.93rem;padding:14px 28px;cursor:pointer;letter-spacing:.14em;width:100%;transition:all .18s;margin-top:.8rem;box-shadow:0 4px 18px rgba(0,0,0,.5),inset 0 1px 0 rgba(255,220,80,.18);-webkit-user-select:none;user-select:none;position:relative;overflow:hidden}
+.unlock-btn::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(255,255,255,.1),transparent);pointer-events:none}
+.unlock-btn:active{transform:scale(.96) translateY(1px);box-shadow:0 2px 8px rgba(0,0,0,.4)}
+.err{color:#e05050;font-size:.74rem;letter-spacing:.1em;margin-top:.7rem;min-height:1.4em;opacity:0;transition:opacity .3s;line-height:1.45}
+.err.on{opacity:1}
+@keyframes shake{0%,100%{transform:translateX(0)}15%{transform:translateX(-7px)}30%{transform:translateX(7px)}45%{transform:translateX(-5px)}60%{transform:translateX(5px)}75%{transform:translateX(-3px)}90%{transform:translateX(3px)}}
+.shake{animation:shake .42s ease-out}
 
-/* ===== HOME ===== */
-#s-home { justify-content:flex-start; padding-top:3.5rem; }
+#s-inv{padding-top:3.5rem}
+.inv-wrap{width:100%;max-width:400px}
+.inv-topbar{display:flex;justify-content:space-between;align-items:center;margin-bottom:1.1rem}
+.inv-badge{color:var(--text-mid);font-size:.66rem;letter-spacing:.12em}
+.wanted-card{border-radius:4px;overflow:hidden;position:relative;background:linear-gradient(160deg,#1e0e00 0%,#130800 50%,#1c0d00 100%);box-shadow:0 0 0 1.5px var(--gold),0 0 0 3px #2e1600,0 0 0 5px var(--gold-d),0 25px 60px rgba(0,0,0,.85),var(--sh-gold);}
+.wanted-card::after{content:'';position:absolute;inset:0;z-index:1;pointer-events:none;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 300 300' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.04'/%3E%3C/svg%3E");opacity:.4;mix-blend-mode:overlay}
+.wanted-card::before{content:'';position:absolute;inset:0;z-index:2;pointer-events:none;background:radial-gradient(ellipse at 50% 40%,transparent 35%,rgba(0,0,0,.5) 100%)}
+.wc-head{background:var(--gold);padding:0;text-align:center;position:relative;z-index:3;display:flex;flex-direction:column;align-items:center;box-shadow:0 3px 16px rgba(0,0,0,.6)}
+.wc-wanted{font-family:'Rye',serif;font-size:clamp(2rem,10vw,3.2rem);color:#0e0500;letter-spacing:.12em;line-height:.95;padding:.3rem 0 .1rem;text-shadow:1px 1px 0 rgba(255,200,50,.3),-1px -1px 0 rgba(0,0,0,.2)}
+.wc-dead{font-size:.68rem;letter-spacing:.5em;color:rgba(14,5,0,.7);padding-bottom:.3rem;font-weight:700;text-transform:uppercase}
+.wc-char{padding:1.3rem 1.4rem 1rem;text-align:center;border-bottom:1px solid var(--bd);position:relative;z-index:3}
+.wc-av{font-size:3.8rem;display:block;margin-bottom:.5rem;filter:drop-shadow(0 4px 12px rgba(0,0,0,.6))}
+.wc-you{font-size:.6rem;letter-spacing:.5em;color:var(--text-lo);text-transform:uppercase;margin-bottom:.25rem;display:block}
+.wc-alias{font-family:'Rye',serif;font-size:clamp(1.5rem,7vw,2.2rem);color:var(--gold);text-shadow:2px 2px 0 #1a0800,0 0 30px rgba(200,134,10,.3);line-height:1.1}
+.wc-realname{font-size:.7rem;color:var(--text-mid);letter-spacing:.28em;text-transform:uppercase;margin-top:.3rem}
+.wc-body{padding:1.1rem 1.4rem 1.5rem;position:relative;z-index:3}
+.wc-crime-head{display:flex;align-items:center;gap:.6rem;margin-bottom:.7rem}
+.wc-crime-rule{flex:1;height:1px;background:linear-gradient(90deg,transparent,var(--gold-d))}
+.wc-crime-rule.r{background:linear-gradient(90deg,var(--gold-d),transparent)}
+.wc-crime-lbl{font-size:.58rem;color:var(--gold-d);letter-spacing:.4em;text-transform:uppercase;white-space:nowrap}
+.crime-box{background:rgba(40,20,0,.6);border:1px solid var(--bd);border-radius:var(--r);padding:10px 13px;margin-bottom:.9rem;position:relative}
+.crime-box-tag{position:absolute;top:-9px;left:12px;background:var(--dk2);border:1px solid var(--bd);border-radius:2px;font-size:.52rem;color:var(--text-lo);letter-spacing:.28em;text-transform:uppercase;padding:1px 7px}
+.crime-text{color:var(--text-hi);font-size:.84rem;line-height:1.65;font-weight:300;font-style:italic}
+.wc-grid{display:grid;grid-template-columns:1fr 1fr;gap:7px;margin-bottom:.9rem}
+.wc-box{background:rgba(35,17,0,.6);border:1px solid rgba(122,78,10,.28);border-radius:var(--r);padding:9px 11px}
+.wc-lbl{font-size:.56rem;color:var(--text-mid);letter-spacing:.3em;text-transform:uppercase;display:block;margin-bottom:3px}
+.wc-val{font-family:'Rye',serif;font-size:.86rem;color:var(--text-top)}
+.wc-val.prime{color:var(--gold);font-size:1rem}
+.wc-butin{border:1px solid rgba(200,134,10,.2);border-radius:var(--r);padding:11px 14px;text-align:center;background:radial-gradient(ellipse at 50% 50%,rgba(200,134,10,.05) 0%,transparent 70%);margin-bottom:.9rem}
+.wc-butin-lbl{font-size:.58rem;color:var(--text-lo);letter-spacing:.4em;text-transform:uppercase;margin-bottom:5px;display:block}
+.wc-butin-t{color:var(--text-top);font-size:.84rem;line-height:1.6;font-weight:300}
+.rsvp-btn{width:100%;background:rgba(35,17,0,.75);border:1px solid rgba(122,78,10,.45);border-radius:var(--r);color:var(--text-top);font-family:'Josefin Sans',sans-serif;font-size:.78rem;letter-spacing:.2em;text-transform:uppercase;padding:12px;cursor:pointer;transition:all .2s;display:flex;align-items:center;justify-content:center;gap:8px;margin-bottom:1rem;position:relative;overflow:hidden}
+.rsvp-btn::before{content:'';position:absolute;left:-100%;top:0;bottom:0;width:100%;background:linear-gradient(90deg,transparent,rgba(200,134,10,.08),transparent);transition:left .5s}
+.rsvp-btn:hover::before{left:100%}
+.rsvp-btn:hover{border-color:var(--gold);color:var(--gold);box-shadow:0 0 18px rgba(200,134,10,.1)}
+.rsvp-btn:active{transform:scale(.96)}
+.wc-sig{text-align:center;padding-top:.85rem;border-top:1px solid rgba(122,78,10,.22)}
+.wc-sig-line{display:flex;align-items:center;justify-content:center;gap:.55rem;margin-bottom:.25rem}
+.wc-sig-rule{width:35px;height:1px;background:linear-gradient(90deg,transparent,var(--gold-d))}
+.wc-sig-rule.r{background:linear-gradient(90deg,var(--gold-d),transparent)}
+.wc-sig-t{font-family:'Rye',serif;font-size:.92rem;color:var(--gold)}
+.wc-sig-s{color:var(--text-lo);font-size:.62rem;letter-spacing:.22em}
 
-.wanted-poster {
-  width:100%; max-width:390px;
-  background:linear-gradient(160deg, #1e0e00 0%, #140a00 50%, #1c0d00 100%);
-  border:0; border-radius:4px; position:relative;
-  padding:0 0 1.8rem;
-  box-shadow:
-    0 0 0 1.5px var(--gold),
-    0 0 0 3px #3a2000,
-    0 0 0 4.5px var(--gold-dim),
-    0 25px 60px rgba(0,0,0,.8),
-    0 0 80px rgba(200,134,10,0.08);
-  overflow:hidden;
-}
+.lure-card{border:1.5px dashed var(--gold-d);border-radius:4px;padding:2.2rem 1.5rem;text-align:center;width:100%;max-width:360px;background:rgba(15,7,0,.9);box-shadow:0 0 0 3px rgba(0,0,0,.4),0 20px 50px rgba(0,0,0,.7)}
+.lure-av{font-size:3.2rem;display:block;margin-bottom:.6rem}
+.lure-name{font-family:'Rye',serif;font-size:1.6rem;color:var(--gold);margin-bottom:.3rem}
+.lure-sub{font-size:.7rem;color:var(--text-mid);letter-spacing:.3em;text-transform:uppercase;margin-bottom:.8rem;padding-bottom:.8rem;border-bottom:1px solid var(--bd)}
+.lure-txt{color:var(--text-hi);font-size:.88rem;line-height:1.7;margin-bottom:.8rem;font-style:italic}
+.lure-detail{font-size:.78rem;color:var(--text-mid);line-height:1.65;margin-bottom:1.5rem}
+.lure-butin{border:1px solid var(--bd);border-radius:var(--r);padding:10px;background:rgba(200,134,10,.04);margin-bottom:1rem}
+.lure-butin-l{font-size:.58rem;color:var(--text-lo);letter-spacing:.3em;text-transform:uppercase;display:block;margin-bottom:4px}
+.lure-butin-t{color:var(--text-top);font-size:.82rem}
+.lure-badge{display:inline-block;padding:4px 12px;border:1px solid rgba(122,78,10,.4);border-radius:2px;font-size:.62rem;color:var(--text-lo);letter-spacing:.3em;text-transform:uppercase;margin-top:.5rem}
 
-/* Poster worn edges */
-.wanted-poster::before {
-  content:'';
-  position:absolute; inset:0; pointer-events:none; z-index:1;
-  background:
-    radial-gradient(ellipse at 0% 0%, rgba(0,0,0,0.5) 0%, transparent 50%),
-    radial-gradient(ellipse at 100% 0%, rgba(0,0,0,0.4) 0%, transparent 50%),
-    radial-gradient(ellipse at 0% 100%, rgba(0,0,0,0.5) 0%, transparent 50%),
-    radial-gradient(ellipse at 100% 100%, rgba(0,0,0,0.4) 0%, transparent 50%);
-  border-radius:4px;
-}
-
-/* Paper grain overlay */
-.wanted-poster::after {
-  content:''; position:absolute; inset:0; z-index:2; pointer-events:none; border-radius:4px;
-  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.05'/%3E%3C/svg%3E");
-  opacity:0.4; mix-blend-mode:overlay;
-}
-
-.poster-header {
-  background:var(--gold);
-  padding:8px 0 7px;
-  text-align:center; position:relative; z-index:3;
-  box-shadow:0 2px 12px rgba(0,0,0,.5);
-}
-.poster-header-text {
-  font-family:'Rye',serif;
-  font-size:.75rem; letter-spacing:.55em; color:#1a0900;
-  text-transform:uppercase;
-}
-
-.poster-body { padding:1.4rem 1.4rem 0; position:relative; z-index:3; }
-
-.poster-title-wrap { text-align:center; margin-bottom:1rem; }
-.poster-star-row { display:flex; align-items:center; justify-content:center; gap:.6rem; margin-bottom:.4rem; }
-.poster-star { font-size:1rem; animation:starPulse 2.5s ease-in-out infinite; }
-.poster-rule { flex:1; height:1px; background:linear-gradient(90deg, transparent, var(--gold-dim), transparent); }
-.poster-title {
-  font-family:'Rye',serif;
-  font-size:clamp(2rem,9vw,3rem);
-  color:var(--gold);
-  letter-spacing:.06em; line-height:1;
-  text-shadow:3px 3px 0 #2a1000, 0 0 40px rgba(200,134,10,0.4);
-  cursor:pointer; /* gunshot easter egg */
-  user-select:none;
-}
-.poster-title:active { transform:scale(.97); }
-.poster-subtitle {
-  font-size:.72rem; color:var(--gold-light); letter-spacing:.5em;
-  text-transform:uppercase; margin-top:.4rem; font-weight:300;
-}
-
-.poster-event-info {
-  border-top:1px solid var(--border); border-bottom:1px solid var(--border);
-  padding:.6rem 0; margin:.8rem 0;
-  display:grid; grid-template-columns:1fr auto 1fr;
-  align-items:center; gap:.5rem; text-align:center;
-}
-.ev-block { }
-.ev-lbl { font-size:.58rem; color:var(--text-muted); letter-spacing:.3em; text-transform:uppercase; display:block; margin-bottom:2px; }
-.ev-val { font-family:'Rye',serif; font-size:.9rem; color:var(--gold-light); }
-.ev-divider { color:var(--gold-dim); font-size:1.2rem; }
-
-.guests-intro {
-  font-size:.65rem; letter-spacing:.3em; color:var(--text-muted);
-  text-transform:uppercase; text-align:center; margin:.9rem 0 .6rem;
-}
-.guests-grid { display:grid; grid-template-columns:1fr 1fr; gap:8px; }
-.gbtn {
-  background:rgba(40,20,0,.7);
-  border:1px solid rgba(122,78,10,.5);
-  border-radius:var(--radius);
-  padding:13px 8px 12px;
-  cursor:pointer; text-align:center;
-  transition:background .2s, border-color .25s, box-shadow .25s, transform .15s;
-  -webkit-user-select:none; user-select:none;
-  position:relative; overflow:hidden;
-}
-.gbtn::before {
-  content:''; position:absolute; inset:0;
-  background:linear-gradient(135deg, rgba(200,134,10,0.05), transparent);
-  opacity:0; transition:opacity .2s;
-}
-.gbtn:hover { border-color:var(--gold-dim); background:rgba(60,30,0,.9); box-shadow:0 0 14px rgba(200,134,10,0.12); }
-.gbtn:hover::before { opacity:1; }
-.gbtn:active { transform:scale(.94); }
-.gbtn-av { font-size:1.7rem; display:block; margin-bottom:5px; }
-.gbtn-name { font-family:'Rye',serif; font-size:.78rem; color:var(--gold-light); display:block; margin-bottom:2px; }
-.gbtn-alias { font-size:.6rem; color:var(--text-muted); letter-spacing:.2em; text-transform:uppercase; display:block; }
-
-.poster-footer {
-  margin:1.2rem 1.4rem 0;
-  border-top:1px solid var(--border);
-  padding:.7rem 0 0;
-  text-align:center; position:relative; z-index:3;
-}
-.poster-footer-text { font-size:.63rem; color:#5a3a14; letter-spacing:.22em; text-transform:uppercase; }
-
-/* ===== LOCK SCREEN ===== */
-#s-lock { justify-content:flex-start; padding-top:3.5rem; }
-
-.back-btn {
-  align-self:flex-start; background:none;
-  border:1px solid rgba(122,78,10,.5); color:var(--text-muted);
-  padding:7px 14px; font-family:'Josefin Sans',sans-serif; font-size:.72rem;
-  letter-spacing:.2em; cursor:pointer; border-radius:var(--radius); margin-bottom:1.2rem;
-  text-transform:uppercase; transition:all .2s; -webkit-user-select:none; user-select:none;
-}
-.back-btn:active { border-color:var(--gold); color:var(--gold); }
-
-.lock-frame {
-  border:1.5px solid var(--gold-dim); border-radius:4px;
-  padding:2rem 1.5rem 1.8rem;
-  width:100%; max-width:360px;
-  background:linear-gradient(160deg, rgba(25,12,0,.97), rgba(18,8,0,.99));
-  box-shadow:
-    0 0 0 1px rgba(200,134,10,.1),
-    0 0 0 4px rgba(20,10,0,.5),
-    0 30px 70px rgba(0,0,0,.7),
-    var(--shadow-gold);
-  text-align:center; position:relative; overflow:hidden;
-}
-.lock-frame::before {
-  content:''; position:absolute; inset:0; pointer-events:none;
-  background:radial-gradient(ellipse at 50% 0%, rgba(200,134,10,0.06) 0%, transparent 70%);
-}
-
-.lock-av { font-size:3rem; margin-bottom:.4rem; display:block; }
-.lock-name { font-family:'Rye',serif; font-size:1.7rem; color:var(--gold); margin-bottom:.2rem; }
-.lock-alias {
-  font-size:.68rem; color:var(--text-muted); letter-spacing:.35em;
-  text-transform:uppercase; margin-bottom:.9rem;
-  padding-bottom:.9rem; border-bottom:1px solid var(--border);
-}
-
-.lock-icon-wrap { margin:.2rem 0 .7rem; }
-.lock-icon {
-  font-size:1.8rem; color:var(--gold-dim); display:inline-block;
-  animation:lockWobble 4s ease-in-out infinite;
-}
-@keyframes lockWobble {
-  0%,100%{transform:rotate(0) scale(1)}
-  20%{transform:rotate(-6deg) scale(1.05)}
-  40%{transform:rotate(6deg) scale(1.05)}
-  60%{transform:rotate(-3deg)}
-  80%{transform:rotate(3deg)}
-}
-.lock-instr {
-  color:var(--text-body); font-size:.82rem; letter-spacing:.12em; margin-bottom:1.1rem; line-height:1.5;
-}
-
-.date-row { display:flex; gap:7px; justify-content:center; align-items:center; margin-bottom:.5rem; }
-.date-row input {
-  background:rgba(40,20,0,.8);
-  border:1.5px solid rgba(122,78,10,.6);
-  border-radius:var(--radius);
-  color:var(--gold-light); font-family:'Josefin Sans',sans-serif; font-size:1.15rem;
-  text-align:center; padding:10px 0;
-  transition:border-color .2s, box-shadow .2s;
-  -webkit-appearance:none; appearance:none;
-}
-.date-row input:focus {
-  outline:none; border-color:var(--gold);
-  box-shadow:0 0 0 2px rgba(200,134,10,0.15), 0 0 12px rgba(200,134,10,0.1);
-}
-.date-row input::placeholder { color:rgba(90,60,25,.7); }
-/* Remove number spinners */
-.date-row input::-webkit-outer-spin-button,
-.date-row input::-webkit-inner-spin-button { -webkit-appearance:none; margin:0; }
-.date-row input[type=number] { -moz-appearance:textfield; }
-#inp-d, #inp-m { width:54px; }
-#inp-y { width:74px; }
-.dsep { color:var(--gold-dim); font-size:1.2rem; font-weight:600; }
-
-.unlock-btn {
-  background:linear-gradient(180deg, #d4920e 0%, #8a5a05 100%);
-  border:none; border-radius:var(--radius);
-  color:#1a0900; font-family:'Rye',serif; font-size:.95rem;
-  padding:14px 28px; cursor:pointer; letter-spacing:.14em;
-  width:100%; transition:all .2s; margin-top:.8rem;
-  box-shadow:0 4px 15px rgba(0,0,0,.4), 0 1px 0 rgba(255,200,80,0.2) inset;
-  -webkit-user-select:none; user-select:none; position:relative; overflow:hidden;
-}
-.unlock-btn::after {
-  content:''; position:absolute; inset:0;
-  background:linear-gradient(180deg, rgba(255,255,255,0.1), transparent);
-  pointer-events:none;
-}
-.unlock-btn:active { transform:scale(.97) translateY(1px); box-shadow:0 2px 8px rgba(0,0,0,.4); }
-
-.err-msg {
-  color:#e05050; font-size:.75rem; letter-spacing:.1em; margin-top:.7rem;
-  min-height:1.4em; opacity:0; transition:opacity .3s; line-height:1.4;
-}
-.err-msg.show { opacity:1; }
-
-/* ===== INVITATION ===== */
-#s-inv { padding-top:3.5rem; }
-
-.inv-wrap { width:100%; max-width:390px; }
-.inv-topbar { display:flex; justify-content:space-between; align-items:center; margin-bottom:1.2rem; }
-.inv-badge { color:var(--text-muted); font-size:.68rem; letter-spacing:.12em; }
-
-.inv-card {
-  border:0; border-radius:4px;
-  background:linear-gradient(160deg, #1e0e00 0%, #140a00 60%, #1c0d00 100%);
-  box-shadow:
-    0 0 0 1.5px var(--gold),
-    0 0 0 3px #3a2000,
-    0 0 0 4.5px var(--gold-dim),
-    0 25px 60px rgba(0,0,0,.8),
-    0 0 80px rgba(200,134,10,0.06);
-  overflow:hidden; position:relative;
-}
-
-/* Paper grain */
-.inv-card::before {
-  content:''; position:absolute; inset:0; z-index:1; pointer-events:none;
-  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.05'/%3E%3C/svg%3E");
-  opacity:0.3; mix-blend-mode:overlay;
-}
-
-.inv-banner {
-  padding:1.8rem 1.4rem 1.4rem; text-align:center;
-  border-bottom:1px solid var(--border);
-  position:relative; z-index:2;
-  background:
-    radial-gradient(ellipse at 50% 0%, rgba(200,134,10,0.08) 0%, transparent 70%),
-    repeating-linear-gradient(90deg, transparent, transparent 55px, rgba(200,134,10,0.025) 55px, rgba(200,134,10,0.025) 57px);
-}
-.inv-you-are { font-size:.62rem; letter-spacing:.5em; color:var(--text-muted); text-transform:uppercase; margin-bottom:.3rem; display:block; }
-.inv-char { font-family:'Rye',serif; font-size:clamp(1.6rem,7vw,2.3rem); color:var(--gold); text-shadow:2px 2px 0 #2a1000, 0 0 30px rgba(200,134,10,0.3); line-height:1.1; }
-.inv-av-big { font-size:3.5rem; margin:.9rem 0 .2rem; display:block; }
-
-.inv-body { padding:1.3rem 1.4rem 1.8rem; position:relative; z-index:2; }
-
-.inv-grid { display:grid; grid-template-columns:1fr 1fr; gap:8px; margin-bottom:1.2rem; }
-.inv-box {
-  background:rgba(40,20,0,.6); border:1px solid rgba(122,78,10,.3);
-  border-radius:var(--radius); padding:10px 12px;
-  transition:border-color .2s;
-}
-.inv-box:hover { border-color:rgba(200,134,10,0.3); }
-.inv-lbl { font-size:.58rem; color:var(--text-muted); letter-spacing:.3em; text-transform:uppercase; display:block; margin-bottom:4px; }
-.inv-val { font-family:'Rye',serif; font-size:.88rem; color:var(--gold-light); }
-
-/* Mission block */
-.inv-mission {
-  border:1px solid rgba(200,134,10,.22);
-  border-radius:var(--radius); padding:14px 16px; text-align:center;
-  background:
-    radial-gradient(ellipse at 50% 50%, rgba(200,134,10,0.05) 0%, transparent 70%),
-    rgba(200,134,10,.04);
-  margin-bottom:1.2rem;
-}
-.inv-ml { font-size:.6rem; color:var(--text-muted); letter-spacing:.4em; text-transform:uppercase; margin-bottom:7px; display:block; }
-.inv-mt { color:var(--gold-light); font-size:.88rem; line-height:1.65; font-weight:300; font-style:italic; }
-
-/* RSVP button */
-.rsvp-btn {
-  width:100%; background:rgba(40,20,0,.7);
-  border:1px solid rgba(122,78,10,.5); border-radius:var(--radius);
-  color:var(--gold-light); font-family:'Josefin Sans',sans-serif; font-size:.8rem;
-  letter-spacing:.2em; text-transform:uppercase;
-  padding:12px; cursor:pointer; transition:all .2s;
-  display:flex; align-items:center; justify-content:center; gap:8px;
-  margin-bottom:1.2rem; position:relative; overflow:hidden;
-}
-.rsvp-btn::before {
-  content:''; position:absolute; left:-100%; top:0; bottom:0; width:100%;
-  background:linear-gradient(90deg, transparent, rgba(200,134,10,0.08), transparent);
-  transition:left .5s;
-}
-.rsvp-btn:hover::before { left:100%; }
-.rsvp-btn:hover { border-color:var(--gold); color:var(--gold); box-shadow:0 0 15px rgba(200,134,10,0.1); }
-.rsvp-btn:active { transform:scale(.97); }
-.rsvp-icon { font-size:1rem; }
-
-.inv-sig {
-  text-align:center; padding-top:.9rem;
-  border-top:1px solid rgba(122,78,10,.25);
-}
-.inv-sig-line { display:flex; align-items:center; justify-content:center; gap:.6rem; margin-bottom:.3rem; }
-.inv-sig-rule { width:40px; height:1px; background:linear-gradient(90deg, transparent, var(--gold-dim)); }
-.inv-sig-rule.r { background:linear-gradient(90deg, var(--gold-dim), transparent); }
-.inv-sig-t { font-family:'Rye',serif; font-size:.95rem; color:var(--gold); }
-.inv-sig-s { color:var(--text-muted); font-size:.65rem; letter-spacing:.22em; margin-top:2px; }
-
-/* ===== TOAST ===== */
-.toast {
-  position:fixed; top:2.8rem; left:50%;
-  transform:translateX(-50%) translateY(-60px);
-  background:rgba(35,17,0,.97); border:1px solid var(--gold);
-  border-radius:var(--radius); padding:10px 20px;
-  color:var(--gold-light); font-size:.8rem; letter-spacing:.1em;
-  z-index:300; transition:transform .4s cubic-bezier(.34,1.56,.64,1);
-  white-space:nowrap; box-shadow:0 8px 25px rgba(0,0,0,.6), 0 0 20px rgba(200,134,10,0.1);
-}
-.toast.show { transform:translateX(-50%) translateY(0); }
-
-/* ===== STARS PULSE ===== */
-@keyframes starPulse {
-  0%,100%{filter:drop-shadow(0 0 4px rgba(200,134,10,.4))}
-  50%{filter:drop-shadow(0 0 14px rgba(200,134,10,.9))}
-}
-
-/* ===== LOCK SHAKE ===== */
-@keyframes shake {
-  0%,100%{transform:translateX(0)}
-  15%{transform:translateX(-7px)}
-  30%{transform:translateX(7px)}
-  45%{transform:translateX(-5px)}
-  60%{transform:translateX(5px)}
-  75%{transform:translateX(-3px)}
-  90%{transform:translateX(3px)}
-}
-.shake { animation:shake 0.4s ease-out; }
-
-/* ===== ENTRANCE ANIMATIONS ===== */
-@keyframes fadeUp {
-  from { opacity:0; transform:translateY(18px); }
-  to   { opacity:1; transform:translateY(0); }
-}
-.screen.active .wanted-poster { animation:fadeUp .5s ease-out both; }
-.screen.active .lock-frame    { animation:fadeUp .4s ease-out both; }
-.screen.active .inv-card      { animation:fadeUp .45s ease-out both; }
-
-/* ===== SCROLLBAR ===== */
-::-webkit-scrollbar { width:4px; }
-::-webkit-scrollbar-track { background:var(--dark); }
-::-webkit-scrollbar-thumb { background:var(--gold-dim); border-radius:2px; }
+.toast{position:fixed;top:2.8rem;left:50%;transform:translateX(-50%) translateY(-65px);background:rgba(30,14,0,.97);border:1px solid var(--gold);border-radius:var(--r);padding:9px 18px;color:var(--text-top);font-size:.79rem;letter-spacing:.1em;z-index:400;transition:transform .4s cubic-bezier(.34,1.56,.64,1);white-space:nowrap;box-shadow:0 8px 28px rgba(0,0,0,.65),0 0 22px rgba(200,134,10,.1)}
+.toast.on{transform:translateX(-50%) translateY(0)}
 </style>
 </head>
 <body>
+<canvas id="cv-bg"></canvas>
+<canvas id="cv-fx"></canvas>
 
-<canvas id="canvas-bg"></canvas>
-<canvas id="canvas-fx"></canvas>
-
-<!-- COUNTDOWN RIBBON -->
-<div id="countdown-ribbon">
-  <span class="cd-label">Soirée dans</span>
+<div id="ribbon">
+  <span class="cd-lbl">Soirée dans</span>
   <div class="cd-units">
-    <div class="cd-block"><span class="cd-num" id="cd-j">--</span><span class="cd-unit">j</span></div>
+    <div class="cd-b"><span class="cd-n" id="cd-j">--</span><span class="cd-u">j</span></div>
     <span class="cd-sep">:</span>
-    <div class="cd-block"><span class="cd-num" id="cd-h">--</span><span class="cd-unit">h</span></div>
+    <div class="cd-b"><span class="cd-n" id="cd-h">--</span><span class="cd-u">h</span></div>
     <span class="cd-sep">:</span>
-    <div class="cd-block"><span class="cd-num" id="cd-m">--</span><span class="cd-unit">min</span></div>
+    <div class="cd-b"><span class="cd-n" id="cd-m">--</span><span class="cd-u">min</span></div>
     <span class="cd-sep">:</span>
-    <div class="cd-block"><span class="cd-num" id="cd-s">--</span><span class="cd-unit">sec</span></div>
+    <div class="cd-b"><span class="cd-n" id="cd-s">--</span><span class="cd-u">sec</span></div>
   </div>
 </div>
 
-<!-- ===== HOME ===== -->
-<div class="screen active" id="s-home">
-  <div class="wanted-poster">
-
-    <div class="poster-header">
-      <div class="poster-header-text">☆ Wanted — Invitation ☆</div>
-    </div>
-
-    <div class="poster-body">
-
-      <div class="poster-title-wrap">
-        <div class="poster-star-row">
-          <span class="poster-rule"></span>
-          <span class="poster-star">⭐</span>
-          <span class="poster-star" style="animation-delay:.4s">⭐</span>
-          <span class="poster-star" style="animation-delay:.8s">⭐</span>
-          <span class="poster-rule"></span>
-        </div>
-        <div class="poster-title" id="easter-title" onclick="easterEgg(event)">Wild West Night</div>
-        <div class="poster-subtitle">— Soirée Thème —</div>
+<!-- HOME -->
+<div class="scr on" id="s-home">
+  <div class="poster">
+    <div class="p-head"><div class="p-head-t">☆ Avis de Recherche — Invitation ☆</div></div>
+    <div class="p-body">
+      <div class="p-star-row">
+        <span class="p-rule"></span>
+        <span class="p-star">⭐</span><span class="p-star" style="animation-delay:.4s">⭐</span><span class="p-star" style="animation-delay:.8s">⭐</span>
+        <span class="p-rule"></span>
       </div>
-
-      <div class="poster-event-info">
-        <div class="ev-block">
-          <span class="ev-lbl">Date</span>
-          <span class="ev-val">21 Juin</span>
-        </div>
-        <span class="ev-divider">✦</span>
-        <div class="ev-block">
-          <span class="ev-lbl">Heure</span>
-          <span class="ev-val">19h30</span>
-        </div>
+      <div class="p-title" id="easter-title" onclick="easterEgg(event)">Wild West Night</div>
+      <div class="p-sub">— Soirée Thème Western —</div>
+      <div class="p-evbar">
+        <div class="p-ev"><span class="p-ev-l">Date</span><span class="p-ev-v">21 Juin</span></div>
+        <span class="p-ev-div">✦</span>
+        <div class="p-ev"><span class="p-ev-l">Heure</span><span class="p-ev-v">19h30</span></div>
+        <span class="p-ev-div">✦</span>
+        <div class="p-ev"><span class="p-ev-l">Lieu</span><span class="p-ev-v" style="font-size:.8rem">Le Havre</span></div>
       </div>
-
-      <div class="guests-intro">Choisis ton personnage</div>
-
-      <div class="guests-grid">
-        <button class="gbtn" onclick="showLock(0)"><span class="gbtn-av">🤠</span><span class="gbtn-name">Invité 1</span><span class="gbtn-alias">Mayliane</span></button>
-        <button class="gbtn" onclick="showLock(1)"><span class="gbtn-av">🔫</span><span class="gbtn-name">Invité 2</span><span class="gbtn-alias">Nina</span></button>
-        <button class="gbtn" onclick="showLock(2)"><span class="gbtn-av">🌵</span><span class="gbtn-name">Invité 3</span><span class="gbtn-alias">Louise</span></button>
-        <button class="gbtn" onclick="showLock(3)"><span class="gbtn-av">🐎</span><span class="gbtn-name">Invité 4</span><span class="gbtn-alias">Gabin</span></button>
-        <button class="gbtn" onclick="showLock(4)"><span class="gbtn-av">🎸</span><span class="gbtn-name">Invité 5</span><span class="gbtn-alias">Morgane</span></button>
-        <button class="gbtn" onclick="showLock(5)"><span class="gbtn-av">🎩</span><span class="gbtn-name">Invité 6</span><span class="gbtn-alias">Laurent</span></button>
+      <div class="g-intro">Identifie ton hors-la-loi</div>
+      <div class="gg">
+        <button class="gb" onclick="showLock(0)"><span class="gb-av">🤠</span><span class="gb-name">Mayliane</span><span class="gb-alias">La Contrebandière</span><span class="gb-prime">25 000 $</span></button>
+        <button class="gb" onclick="showLock(1)"><span class="gb-av">🔫</span><span class="gb-name">Nina</span><span class="gb-alias">L'Élégante H-L-L</span><span class="gb-prime">3 000 $</span></button>
+        <button class="gb" onclick="showLock(2)"><span class="gb-av">🌵</span><span class="gb-name">Louise</span><span class="gb-alias">La Pilleuse</span><span class="gb-prime">500 $</span></button>
+        <button class="gb" onclick="showLock(3)"><span class="gb-av">🐎</span><span class="gb-name">Gabin</span><span class="gb-alias">Le Pilleur de Caves</span><span class="gb-prime">10 000 $</span></button>
+        <button class="gb" onclick="showLock(4)"><span class="gb-av">🎸</span><span class="gb-name">Morgane</span><span class="gb-alias">La Bandite</span><span class="gb-prime">5 000 $</span></button>
+        <button class="gb" onclick="showLock(5)"><span class="gb-av">🎩</span><span class="gb-name">Laurent</span><span class="gb-alias">Le Pilleur de BBQ</span><span class="gb-prime">1 500 $</span></button>
+        <button class="gb" onclick="showLock(6)"><span class="gb-av">🌾</span><span class="gb-name">Yann</span><span class="gb-alias">Le Bandit des Plaines</span><span class="gb-prime">2 000 $</span></button>
+        <button class="gb" onclick="showLock(7)"><span class="gb-av">🎵</span><span class="gb-name">Chloé</span><span class="gb-alias">La Fine Gâchette</span><span class="gb-prime">8 000 $</span></button>
       </div>
-
     </div>
-
-    <div class="poster-footer">
-      <div class="poster-footer-text">Dead or alive — show up at 19h30</div>
-    </div>
-
+    <div class="p-foot"><div class="p-foot-t">Dead or alive — show up at 19h30 · Le Havre</div></div>
   </div>
 </div>
 
-<!-- ===== LOCK ===== -->
-<div class="screen" id="s-lock">
-  <button class="back-btn" onclick="goHome()">← Retour</button>
-  <div class="lock-frame" id="lock-frame">
-    <span class="lock-av" id="l-av">🤠</span>
-    <div class="lock-name" id="l-name">Invité 1</div>
-    <div class="lock-alias" id="l-alias">The Sheriff</div>
-    <div class="lock-icon-wrap"><span class="lock-icon">🔒</span></div>
-    <div class="lock-instr">Entre ta date d'anniversaire<br><span style="font-size:.72rem;color:var(--text-muted)">JJ / MM / AAAA</span></div>
+<!-- LOCK -->
+<div class="scr" id="s-lock">
+  <button class="back" onclick="goHome()">← Retour</button>
+  <div class="lk-frame" id="lk-frame">
+    <span class="lk-av" id="l-av">🤠</span>
+    <div class="lk-name" id="l-name">Mayliane</div>
+    <div class="lk-alias" id="l-alias">La Contrebandière du Saloon</div>
+    <div class="lk-prime" id="l-prime">Prime : 25 000 $</div>
+    <span class="lk-icon">🔒</span>
+    <div class="lk-instr">Entre ta date de naissance<span>JJ / MM / AAAA</span></div>
     <div class="date-row">
       <input type="number" id="inp-d" placeholder="JJ" min="1" max="31" inputmode="numeric"/>
       <span class="dsep">/</span>
       <input type="number" id="inp-m" placeholder="MM" min="1" max="12" inputmode="numeric"/>
       <span class="dsep">/</span>
-      <input type="number" id="inp-y" placeholder="AAAA" min="1900" max="2020" inputmode="numeric"/>
+      <input type="number" id="inp-y" placeholder="AAAA" min="1900" max="2030" inputmode="numeric"/>
     </div>
-    <div class="err-msg" id="err">Mauvaise piste, cowboy 🤠 Réessaie.</div>
-    <button class="unlock-btn" onclick="tryUnlock()">Ouvrir mon invitation 🤠</button>
+    <div class="err" id="err">Mauvaise piste, cowboy 🤠 — Réessaie.</div>
+    <button class="unlock-btn" onclick="tryUnlock()">Ouvrir mon avis de recherche 🤠</button>
   </div>
 </div>
 
-<!-- ===== INVITATION ===== -->
-<div class="screen" id="s-inv">
+<!-- INVITATION / WANTED POSTER -->
+<div class="scr" id="s-inv">
   <div class="inv-wrap">
     <div class="inv-topbar">
-      <button class="back-btn" style="margin:0" onclick="goHome()">← Saloon</button>
-      <span class="inv-badge">⭐ Bienvenue, partenaire</span>
+      <button class="back" style="margin:0" onclick="goHome()">← Saloon</button>
+      <span class="inv-badge">⭐ Bienvenue, hors-la-loi</span>
     </div>
-    <div class="inv-card">
-      <div class="inv-banner">
-        <span class="inv-you-are">Tu es</span>
-        <div class="inv-char" id="i-char">The Sheriff</div>
-        <span class="inv-av-big" id="i-av">🤠</span>
+    <div class="wanted-card">
+      <div class="wc-head">
+        <div class="wc-wanted">WANTED</div>
+        <div class="wc-dead">Dead or Alive</div>
       </div>
-      <div class="inv-body">
-        <div class="inv-grid">
-          <div class="inv-box"><span class="inv-lbl">Date</span><span class="inv-val">21 Juin 2025</span></div>
-          <div class="inv-box"><span class="inv-lbl">Heure</span><span class="inv-val">19h30</span></div>
-          <div class="inv-box"><span class="inv-lbl">Lieu</span><span class="inv-val" style="font-size:.78rem">Le Havre</span></div>
-          <div class="inv-box"><span class="inv-lbl">Dress Code</span><span class="inv-val" style="font-size:.76rem">Western 🤠</span></div>
+      <div class="wc-char">
+        <span class="wc-av" id="i-av">🤠</span>
+        <span class="wc-you">Tu es</span>
+        <div class="wc-alias" id="i-alias">La Contrebandière du Saloon</div>
+        <div class="wc-realname" id="i-realname">Mayliane</div>
+      </div>
+      <div class="wc-body">
+        <div class="wc-crime-head">
+          <span class="wc-crime-rule"></span>
+          <span class="wc-crime-lbl">Chef d'accusation</span>
+          <span class="wc-crime-rule r"></span>
         </div>
-        <div class="inv-mission">
-          <span class="inv-ml">Ta mission, cowboy</span>
-          <div class="inv-mt" id="i-mission">Personnalise ce texte !</div>
+        <div class="crime-box" style="margin-bottom:.5rem">
+          <span class="crime-box-tag">Option A</span>
+          <div class="crime-text" id="i-crime-a">—</div>
+        </div>
+        <div class="crime-box">
+          <span class="crime-box-tag">Option B</span>
+          <div class="crime-text" id="i-crime-b">—</div>
+        </div>
+        <div class="wc-grid" style="margin-top:.9rem">
+          <div class="wc-box"><span class="wc-lbl">Date</span><span class="wc-val">21 Juin 2025</span></div>
+          <div class="wc-box"><span class="wc-lbl">Heure</span><span class="wc-val">19h30</span></div>
+          <div class="wc-box"><span class="wc-lbl">Lieu</span><span class="wc-val" style="font-size:.78rem">Le Havre</span></div>
+          <div class="wc-box"><span class="wc-lbl">Prime (Bounty)</span><span class="wc-val prime" id="i-prime">25 000 $</span></div>
+        </div>
+        <div class="wc-butin">
+          <span class="wc-butin-lbl">Récompense / Butin</span>
+          <div class="wc-butin-t" id="i-butin">—</div>
         </div>
         <button class="rsvp-btn" id="rsvp-btn" onclick="doRSVP()">
-          <span class="rsvp-icon">✉️</span>
-          <span id="rsvp-text">Confirmer ma présence</span>
+          <span>✉️</span><span id="rsvp-text">Confirmer ma présence</span>
         </button>
-        <div class="inv-sig">
-          <div class="inv-sig-line">
-            <span class="inv-sig-rule"></span>
-            <span class="inv-sig-t">⭐ Wild West Night ⭐</span>
-            <span class="inv-sig-rule r"></span>
+        <div class="wc-sig">
+          <div class="wc-sig-line">
+            <span class="wc-sig-rule"></span>
+            <span class="wc-sig-t">⭐ Wild West Night ⭐</span>
+            <span class="wc-sig-rule r"></span>
           </div>
-          <div class="inv-sig-s">Y'all better show up</div>
+          <div class="wc-sig-s">Dress code Western — Y'all better show up</div>
         </div>
       </div>
     </div>
+  </div>
+</div>
+
+<!-- LURE SCREEN -->
+<div class="scr" id="s-lure">
+  <button class="back" onclick="goHome()">← Retour</button>
+  <div class="lure-card">
+    <span class="lure-av" id="lr-av">🌾</span>
+    <div class="lure-name" id="lr-name">Yann</div>
+    <div class="lure-sub" id="lr-alias">Le Bandit des Plaines</div>
+    <div class="lure-txt">Tu es un leurre, hors-la-loi. Tu as quand même un rôle important à jouer dans la nuit !</div>
+    <div class="lure-detail" id="lr-detail">—</div>
+    <div class="lure-butin">
+      <span class="lure-butin-l">Récompense</span>
+      <div class="lure-butin-t" id="lr-butin">—</div>
+    </div>
+    <button class="rsvp-btn" id="rsvp-btn-lure" onclick="doRSVPLure()" style="margin-top:.8rem">
+      <span>✉️</span><span id="rsvp-text-lure">Confirmer ma présence</span>
+    </button>
+    <div class="lure-badge">★ Leurre officiel — Wild West Night ★</div>
   </div>
 </div>
 
 <div class="toast" id="toast"></div>
 
 <script>
-// ===== DATA =====
-// FIX: avatars cohérents avec boutons home + bd corrigées
+// ========= DONNÉES INVITÉS =========
+// DATES CORRIGÉES :
+// Mayliane : 15/09/2007
+// Nina     : 08/08/2007
+// Louise   : 22/08/2007
+// Gabin    : 24/02/2009
+// Morgane  : 08/10/2007
+// Laurent  : 28/09/2006
+// Yann     : 07/10/2007
+// Chloé    : 21/01/2006
+
 const GUESTS = [
-  { name:"Invité 1", alias:"The Sheriff",    av:"🤠", bd:{d:15,m:9,y:2007},  color:"#c8860a",
-    mission:"En tant que shérif, c'est TOI qui ouvres le bal. Arrive en premier, la loi, c'est toi !" },
-  { name:"Invité 2", alias:"The Outlaw",     av:"🔫", bd:{d:2,m:2,y:1991},   color:"#c84040",
-    mission:"L'outlaw de la soirée — crée le chaos musical. Playlist interdite ? Pas pour toi." },
-  { name:"Invité 3", alias:"The Drifter",    av:"🌵", bd:{d:22,m:8,y:2007},  color:"#40c880",
-    mission:"Mystérieux et insaisissable. Personne ne sait d'où tu viens… ni où tu vas." },
-  { name:"Invité 4", alias:"The Cowboy",     av:"🐎", bd:{d:4,m:4,y:2007},   color:"#a060e0",
-    mission:"Le vrai cowboy. Tu ramènes la bouffe. On compte sur toi, partenaire." },
-  { name:"Invité 5", alias:"The Gunslinger", av:"🎸", bd:{d:5,m:5,y:2007},   color:"#e8c040",
-    mission:"Le plus rapide du West. Défi : premier à vider son verre à chaque toast." },
-  { name:"Invité 6", alias:"The Gambler",    av:"🎩", bd:{d:28,m:9,y:2006},  color:"#40a0c8",
-    mission:"Le joueur — tu organises les jeux de la soirée. Que le meilleur bluffeur gagne." }
+  // 0 — Mayliane
+  {
+    name:"Mayliane", alias:"La Contrebandière du Saloon", av:"🤠",
+    bd:{d:15,m:9,y:2007}, prime:"25 000 $", color:"#c8860a", lure:false,
+    crimeA:"Trafic clandestin de cocktails et détournement de la réserve de whisky du Shérif.",
+    crimeB:"Consommation suspecte et hautement abusive de téquila.",
+    butin:"Un double shot gratuit au comptoir et l'immunité totale pour la soirée."
+  },
+  // 1 — Nina
+  {
+    name:"Nina", alias:"L'Élégante Hors-la-Loi", av:"🔫",
+    bd:{d:8,m:8,y:2007}, prime:"3 000 $", color:"#c84040", lure:false,
+    crimeA:"Port d'une tenue d'époque outrageusement stylée et détention de bottes d'une classe illégale.",
+    crimeB:"Provocation visuelle majeure avec un chapeau de cow-boy trop parfait pour l'ordre public.",
+    butin:"Une étoile de Shérif dorée et le droit d'ouvrir le bal de la country."
+  },
+  // 2 — Louise
+  {
+    name:"Louise", alias:"La Pilleuse de Guimauves", av:"🌵",
+    bd:{d:22,m:8,y:2007}, prime:"500 $", color:"#40c880", lure:false,
+    crimeA:"Pillage du stock de guimauves pour le feu de camp.",
+    crimeB:"Tricherie notoire au Poker Menteur et recel de cartes de rechange dans ses manches.",
+    butin:"Un verre de limonade maison ou un cocktail « Wild West » pour oublier ses dettes."
+  },
+  // 3 — Gabin
+  {
+    name:"Gabin", alias:"Le Pilleur de Caves", av:"🐎",
+    bd:{d:24,m:2,y:2009}, prime:"10 000 $", color:"#a060e0", lure:false,
+    crimeA:"Vol qualifié de bières de trappeur et tentative de siphonner le bar du Saloon.",
+    crimeB:"Ivresse manifeste en plein duel de regards avec le Shérif.",
+    butin:"Une chope bien fraîche servie sur un plateau et le droit de chanter au feu de camp."
+  },
+  // 4 — Morgane
+  {
+    name:"Morgane", alias:"La Bandite aux Éclats de Rire", av:"🎸",
+    bd:{d:8,m:10,y:2007}, prime:"5 000 $", color:"#e8c040", lure:false,
+    crimeA:"Crises de rire incontrôlées et communicatives perturbant gravement le sérieux des shérifs.",
+    crimeB:"Tapage nocturne à coup de fous rires légendaires et de bonne humeur contagieuse.",
+    butin:"Double ration de marshmallows géants à faire griller près du feu."
+  },
+  // 5 — Laurent
+  {
+    name:"Laurent", alias:"Le Pilleur de Barbecue", av:"🎩",
+    bd:{d:28,m:9,y:2006}, prime:"1 500 $", color:"#40a0c8", lure:false,
+    crimeA:"Attaque à main armée de la table des desserts et détournement de burgers rustiques au barbecue.",
+    crimeB:"Tentative de capture des saucisses à l'aide d'un lasso invisible.",
+    butin:"Le titre de Maître du Grill officiel de la Ferme de Soquence et un verre bien mérité."
+  },
+  // 6 — Yann (LEURRE)
+  {
+    name:"Yann", alias:"Le Bandit des Plaines", av:"🌾",
+    bd:{d:7,m:10,y:2007}, prime:"2 000 $", color:"#9a7040", lure:false,
+    crimeA:"Complot nocturne et tentative de vol de la diligence de ravitaillement du Saloon.",
+    crimeB:"Dissimulation de cartes de rechange dans ses bottes de cow-boy.",
+    butin:"Une pinte de bière fraîche et l'autorisation de distribuer les cartes de Poker.",
+},
+  // 7 — Chloé (LEURRE)
+  {
+    name:"Chloé", alias:"La Fine Gâchette du Désert", av:"🎵",
+    bd:{d:21,m:1,y:2006}, prime:"8 000 $", color:"#c07050", lure:false,
+    crimeA:"Tapage nocturne pour avoir fait chanter tout le Saloon jusqu'à l'aube.",
+    crimeB:"Attaque de la réserve de friandises et recel de douceurs du Shérif.",
+    butin:"Un cocktail spécial « Gold Rush » fruité et le droit de choisir la playlist country.",
+}
 ];
 
-// ===== RSVP config =====
-// Change this to your WhatsApp number or leave as mailto
-const RSVP_PHONE = ""; // ex: "33612345678" for WhatsApp, leave empty for clipboard
-const RSVP_EMAIL = ""; // ex: "fete@exemple.com"
-
+const RSVP_PHONE = "";
+const RSVP_EMAIL = "";
 let cur = 0;
 let rsvpDone = false;
 
-// ===== COUNTDOWN =====
-const EVENT_DATE = new Date('2025-06-21T19:30:00');
-
-function updateCountdown() {
-  const now = new Date();
-  const diff = EVENT_DATE - now;
-  if (diff <= 0) {
-    document.getElementById('countdown-ribbon').innerHTML =
-      '<span style="font-family:\'Rye\',serif;color:var(--gold);font-size:.85rem;letter-spacing:.1em">⭐ C\'est ce soir ! Yeehaw ! ⭐</span>';
+// ========= COUNTDOWN =========
+const EVENT = new Date('2025-06-21T19:30:00');
+function tick() {
+  const d = EVENT - new Date();
+  if (d <= 0) {
+    document.getElementById('ribbon').innerHTML='<span style="font-family:\'Rye\',serif;color:var(--gold);font-size:.85rem;letter-spacing:.1em">⭐ C\'est ce soir — Yeehaw ! ⭐</span>';
     return;
   }
-  const j  = Math.floor(diff / 86400000);
-  const h  = Math.floor((diff % 86400000) / 3600000);
-  const mn = Math.floor((diff % 3600000) / 60000);
-  const s  = Math.floor((diff % 60000) / 1000);
-  document.getElementById('cd-j').textContent = String(j).padStart(2,'0');
-  document.getElementById('cd-h').textContent = String(h).padStart(2,'0');
-  document.getElementById('cd-m').textContent = String(mn).padStart(2,'0');
-  document.getElementById('cd-s').textContent = String(s).padStart(2,'0');
+  const j=Math.floor(d/86400000),h=Math.floor((d%86400000)/3600000),mn=Math.floor((d%3600000)/60000),s=Math.floor((d%60000)/1000);
+  document.getElementById('cd-j').textContent=String(j).padStart(2,'0');
+  document.getElementById('cd-h').textContent=String(h).padStart(2,'0');
+  document.getElementById('cd-m').textContent=String(mn).padStart(2,'0');
+  document.getElementById('cd-s').textContent=String(s).padStart(2,'0');
 }
-updateCountdown();
-setInterval(updateCountdown, 1000);
+tick(); setInterval(tick,1000);
 
-// ===== AUDIO ENGINE =====
-let AC = null;
-function getAC() {
-  if (!AC) AC = new (window.AudioContext || window.webkitAudioContext)();
-  return AC;
-}
+// ========= AUDIO =========
+let AC=null;
+const ac=()=>{if(!AC)AC=new(window.AudioContext||window.webkitAudioContext)();return AC;};
+function playGunshot(){try{const a=ac(),buf=a.createBuffer(1,a.sampleRate*.3,a.sampleRate),d=buf.getChannelData(0);for(let i=0;i<d.length;i++){const t=i/a.sampleRate;d[i]=(Math.random()*2-1)*Math.exp(-t*28)*(t<.012?90:1);}const s=a.createBufferSource();s.buffer=buf;const g=a.createGain();g.gain.setValueAtTime(.55,a.currentTime);g.gain.exponentialRampToValueAtTime(.001,a.currentTime+.3);const f=a.createBiquadFilter();f.type='bandpass';f.frequency.value=350;f.Q.value=.5;s.connect(f);f.connect(g);g.connect(a.destination);s.start();}catch(e){}}
+function playHorse(){try{const a=ac();const clop=(dl)=>{const buf=a.createBuffer(1,a.sampleRate*.06,a.sampleRate),d=buf.getChannelData(0);for(let i=0;i<d.length;i++){const t=i/a.sampleRate;d[i]=(Math.random()*2-1)*Math.exp(-t*70);}const s=a.createBufferSource();s.buffer=buf;const g=a.createGain();g.gain.setValueAtTime(.28,a.currentTime+dl);const f=a.createBiquadFilter();f.type='highpass';f.frequency.value=200;s.connect(f);f.connect(g);g.connect(a.destination);s.start(a.currentTime+dl);};for(let i=0;i<8;i++)clop(i*.13);}catch(e){}}
+function playUnlock(){try{const a=ac();[0,.13,.26].forEach((dl,i)=>{const o=a.createOscillator(),g=a.createGain();o.type='triangle';o.frequency.value=[523,659,784][i];g.gain.setValueAtTime(.18,a.currentTime+dl);g.gain.exponentialRampToValueAtTime(.001,a.currentTime+dl+.35);o.connect(g);g.connect(a.destination);o.start(a.currentTime+dl);o.stop(a.currentTime+dl+.35);});}catch(e){}}
+function playError(){try{const a=ac(),o=a.createOscillator(),g=a.createGain();o.type='sawtooth';o.frequency.setValueAtTime(220,a.currentTime);o.frequency.linearRampToValueAtTime(80,a.currentTime+.32);g.gain.setValueAtTime(.12,a.currentTime);g.gain.exponentialRampToValueAtTime(.001,a.currentTime+.32);o.connect(g);g.connect(a.destination);o.start();o.stop(a.currentTime+.32);}catch(e){}}
+function playLasso(){try{const a=ac(),o=a.createOscillator(),g=a.createGain();o.type='sine';o.frequency.setValueAtTime(900,a.currentTime);o.frequency.linearRampToValueAtTime(350,a.currentTime+.45);g.gain.setValueAtTime(.12,a.currentTime);g.gain.exponentialRampToValueAtTime(.001,a.currentTime+.45);o.connect(g);g.connect(a.destination);o.start();o.stop(a.currentTime+.45);}catch(e){}}
 
-function playGunshot() {
-  try {
-    const ac = getAC();
-    const buf = ac.createBuffer(1, ac.sampleRate * 0.3, ac.sampleRate);
-    const d = buf.getChannelData(0);
-    for (let i = 0; i < d.length; i++) {
-      const t = i / ac.sampleRate;
-      d[i] = (Math.random() * 2 - 1) * Math.exp(-t * 28) * (t < 0.012 ? 90 : 1);
-    }
-    const s = ac.createBufferSource(); s.buffer = buf;
-    const g = ac.createGain(); g.gain.setValueAtTime(0.55, ac.currentTime);
-    g.gain.exponentialRampToValueAtTime(0.001, ac.currentTime + 0.3);
-    const f = ac.createBiquadFilter(); f.type = 'bandpass'; f.frequency.value = 350; f.Q.value = 0.5;
-    s.connect(f); f.connect(g); g.connect(ac.destination);
-    s.start();
-  } catch(e) {}
-}
-
-function playLasso() {
-  try {
-    const ac = getAC();
-    const o = ac.createOscillator(); const g = ac.createGain();
-    o.type = 'sine'; o.frequency.setValueAtTime(900, ac.currentTime);
-    o.frequency.linearRampToValueAtTime(350, ac.currentTime + 0.45);
-    g.gain.setValueAtTime(0.12, ac.currentTime);
-    g.gain.exponentialRampToValueAtTime(0.001, ac.currentTime + 0.45);
-    o.connect(g); g.connect(ac.destination);
-    o.start(); o.stop(ac.currentTime + 0.45);
-  } catch(e) {}
-}
-
-function playHorse() {
-  try {
-    const ac = getAC();
-    const clop = (delay) => {
-      const buf = ac.createBuffer(1, ac.sampleRate * 0.06, ac.sampleRate);
-      const d = buf.getChannelData(0);
-      for (let i = 0; i < d.length; i++) { const t = i / ac.sampleRate; d[i] = (Math.random()*2-1)*Math.exp(-t*70); }
-      const s = ac.createBufferSource(); s.buffer = buf;
-      const g = ac.createGain(); g.gain.setValueAtTime(0.28, ac.currentTime + delay);
-      const f = ac.createBiquadFilter(); f.type = 'highpass'; f.frequency.value = 200;
-      s.connect(f); f.connect(g); g.connect(ac.destination);
-      s.start(ac.currentTime + delay);
-    };
-    for (let i = 0; i < 8; i++) clop(i * 0.13);
-  } catch(e) {}
-}
-
-function playUnlock() {
-  try {
-    const ac = getAC();
-    [0, 0.13, 0.26].forEach((delay, i) => {
-      const o = ac.createOscillator(); const g = ac.createGain();
-      o.type = 'triangle';
-      o.frequency.value = [523, 659, 784][i];
-      g.gain.setValueAtTime(0.18, ac.currentTime + delay);
-      g.gain.exponentialRampToValueAtTime(0.001, ac.currentTime + delay + 0.35);
-      o.connect(g); g.connect(ac.destination);
-      o.start(ac.currentTime + delay); o.stop(ac.currentTime + delay + 0.35);
-    });
-  } catch(e) {}
-}
-
-function playError() {
-  try {
-    const ac = getAC();
-    const o = ac.createOscillator(); const g = ac.createGain();
-    o.type = 'sawtooth'; o.frequency.setValueAtTime(220, ac.currentTime);
-    o.frequency.linearRampToValueAtTime(80, ac.currentTime + 0.32);
-    g.gain.setValueAtTime(0.12, ac.currentTime);
-    g.gain.exponentialRampToValueAtTime(0.001, ac.currentTime + 0.32);
-    o.connect(g); g.connect(ac.destination);
-    o.start(); o.stop(ac.currentTime + 0.32);
-  } catch(e) {}
-}
-
-// ===== CANVAS BACKGROUND =====
-const bgCanvas = document.getElementById('canvas-bg');
-const bgCtx = bgCanvas.getContext('2d');
-const fxCanvas = document.getElementById('canvas-fx');
-const fxCtx = fxCanvas.getContext('2d');
-
-function resizeCanvases() {
-  bgCanvas.width  = fxCanvas.width  = window.innerWidth;
-  bgCanvas.height = fxCanvas.height = window.innerHeight;
-}
-resizeCanvases();
-window.addEventListener('resize', resizeCanvases);
-
-// Stars
-const STARS = Array.from({length:80}, () => ({
-  x: Math.random() * window.innerWidth,
-  y: Math.random() * window.innerHeight * 0.55,
-  r: Math.random() * 1.3 + 0.2,
-  tw: Math.random() * Math.PI * 2,
-  ts: Math.random() * 0.018 + 0.004,
-  bright: Math.random() > 0.85  // some brighter stars
-}));
-
-// Tumbleweeds
-const TUMBLES = Array.from({length:3}, (_,i) => ({
-  x: -80 - i * 350,
-  y: window.innerHeight * 0.68 + Math.random() * window.innerHeight * 0.18,
-  vx: 0.35 + Math.random() * 0.45,
-  rot: 0, rv: 0.025 + Math.random() * 0.02,
-  r: 20 + Math.random() * 14,
-  opacity: 0.45 + Math.random() * 0.25
-}));
-
-// Dust particles
-const DUST = Array.from({length:30}, () => ({
-  x: Math.random() * window.innerWidth,
-  y: window.innerHeight * 0.78 + Math.random() * window.innerHeight * 0.22,
-  vx: (Math.random() - 0.5) * 0.28, vy: -Math.random() * 0.18 - 0.04,
-  r: Math.random() * 3.5 + 0.5, life: Math.random(), maxLife: 0.3 + Math.random() * 0.5,
-  color: `rgba(${180+Math.random()*40|0},${100+Math.random()*40|0},${20+Math.random()*20|0},`
-}));
-
-// Shooting stars
-let nextShoot = 3000 + Math.random() * 6000;
-let shootTimer = 0;
-let shootStars = [];
-
-function drawTumbleweed(ctx, x, y, r, rot) {
-  ctx.save(); ctx.translate(x, y); ctx.rotate(rot);
-  ctx.strokeStyle = 'rgba(150,90,25,0.65)'; ctx.lineWidth = 1.4;
-  ctx.beginPath(); ctx.arc(0, 0, r, 0, Math.PI * 2); ctx.stroke();
-  for (let i = 0; i < 8; i++) {
-    const a = i * Math.PI / 4;
-    ctx.beginPath(); ctx.moveTo(0, 0); ctx.lineTo(Math.cos(a)*r, Math.sin(a)*r); ctx.stroke();
-  }
-  ctx.beginPath(); ctx.ellipse(0, 0, r*0.65, r*0.32, Math.PI*0.3, 0, Math.PI*2); ctx.stroke();
-  ctx.beginPath(); ctx.ellipse(0, 0, r*0.65, r*0.32, -Math.PI*0.3, 0, Math.PI*2); ctx.stroke();
-  ctx.restore();
-}
-
-let bgFrame = 0;
-let lastTime = 0;
-
-function animBG(timestamp) {
-  const dt = timestamp - lastTime; lastTime = timestamp;
-  bgCtx.clearRect(0, 0, bgCanvas.width, bgCanvas.height);
-  bgFrame++;
-
-  // Stars
-  STARS.forEach(s => {
-    s.tw += s.ts;
-    const base = s.bright ? 0.55 : 0.35;
-    const amp  = s.bright ? 0.45 : 0.35;
-    const alpha = base + Math.sin(s.tw) * amp;
-    bgCtx.beginPath(); bgCtx.arc(s.x, s.y, s.r, 0, Math.PI*2);
-    bgCtx.fillStyle = s.bright
-      ? `rgba(255,240,180,${alpha})`
-      : `rgba(232,200,120,${alpha})`;
-    bgCtx.fill();
-  });
-
-  // Shooting stars
-  shootTimer += dt || 16;
-  if (shootTimer > nextShoot) {
-    shootTimer = 0;
-    nextShoot = 4000 + Math.random() * 8000;
-    const y0 = Math.random() * bgCanvas.height * 0.4;
-    shootStars.push({ x: bgCanvas.width * (0.2 + Math.random()*0.6), y: y0, vx: -4-Math.random()*4, vy: 1.5+Math.random()*2, life:1 });
-  }
-  shootStars = shootStars.filter(s => s.life > 0);
-  shootStars.forEach(s => {
-    bgCtx.save();
-    bgCtx.globalAlpha = s.life;
-    const grad = bgCtx.createLinearGradient(s.x, s.y, s.x-s.vx*12, s.y-s.vy*12);
-    grad.addColorStop(0, 'rgba(255,240,160,0.9)');
-    grad.addColorStop(1, 'transparent');
-    bgCtx.strokeStyle = grad; bgCtx.lineWidth = 1.5;
-    bgCtx.beginPath(); bgCtx.moveTo(s.x, s.y); bgCtx.lineTo(s.x - s.vx*12, s.y - s.vy*12); bgCtx.stroke();
-    bgCtx.restore();
-    s.x += s.vx; s.y += s.vy; s.life -= 0.04;
-  });
-
-  // Dust
-  DUST.forEach(p => {
-    p.x += p.vx; p.y += p.vy; p.life += 0.004;
-    if (p.life > p.maxLife) {
-      p.x = Math.random() * bgCanvas.width;
-      p.y = bgCanvas.height * 0.78 + Math.random() * bgCanvas.height * 0.22;
-      p.life = 0;
-    }
-    const alpha = (1 - p.life / p.maxLife) * 0.3;
-    bgCtx.beginPath(); bgCtx.arc(p.x, p.y, p.r, 0, Math.PI*2);
-    bgCtx.fillStyle = p.color + alpha + ')'; bgCtx.fill();
-  });
-
-  // Tumbleweeds
-  TUMBLES.forEach(t => {
-    t.x += t.vx; t.rot += t.rv;
-    if (t.x > bgCanvas.width + 120) t.x = -120;
-    bgCtx.globalAlpha = t.opacity;
-    drawTumbleweed(bgCtx, t.x, t.y, t.r, t.rot);
-    bgCtx.globalAlpha = 1;
-  });
-
+// ========= CANVAS =========
+const bgC=document.getElementById('cv-bg'),bgX=bgC.getContext('2d');
+const fxC=document.getElementById('cv-fx'),fxX=fxC.getContext('2d');
+function rsz(){bgC.width=fxC.width=innerWidth;bgC.height=fxC.height=innerHeight;}
+rsz();window.addEventListener('resize',rsz);
+const STARS=Array.from({length:90},()=>({x:Math.random()*innerWidth,y:Math.random()*innerHeight*.55,r:Math.random()*1.3+.2,tw:Math.random()*Math.PI*2,ts:Math.random()*.018+.004,bright:Math.random()>.82}));
+const TUMBLES=Array.from({length:3},(_,i)=>({x:-80-i*380,y:innerHeight*.67+Math.random()*innerHeight*.18,vx:.32+Math.random()*.42,rot:0,rv:.024+Math.random()*.018,r:20+Math.random()*14,op:.42+Math.random()*.25}));
+const DUST=Array.from({length:30},()=>({x:Math.random()*innerWidth,y:innerHeight*.78+Math.random()*innerHeight*.22,vx:(Math.random()-.5)*.28,vy:-Math.random()*.18-.04,r:Math.random()*3.5+.5,life:Math.random(),maxLife:.3+Math.random()*.5,col:`rgba(${180+Math.random()*40|0},${100+Math.random()*40|0},${20+Math.random()*20|0},`}));
+let shootStars=[],nextShoot=3e3+Math.random()*6e3,shootT=0;
+let FX=[];
+function drawTW(ctx,x,y,r,rot){ctx.save();ctx.translate(x,y);ctx.rotate(rot);ctx.strokeStyle='rgba(145,85,22,.6)';ctx.lineWidth=1.4;ctx.beginPath();ctx.arc(0,0,r,0,Math.PI*2);ctx.stroke();for(let i=0;i<8;i++){const a=i*Math.PI/4;ctx.beginPath();ctx.moveTo(0,0);ctx.lineTo(Math.cos(a)*r,Math.sin(a)*r);ctx.stroke();}ctx.beginPath();ctx.ellipse(0,0,r*.65,r*.32,Math.PI*.3,0,Math.PI*2);ctx.stroke();ctx.beginPath();ctx.ellipse(0,0,r*.65,r*.32,-Math.PI*.3,0,Math.PI*2);ctx.stroke();ctx.restore();}
+let lastT=0;
+function animBG(ts){
+  const dt=ts-lastT;lastT=ts;
+  bgX.clearRect(0,0,bgC.width,bgC.height);
+  STARS.forEach(s=>{s.tw+=s.ts;const a=(s.bright?.55:.35)+Math.sin(s.tw)*(s.bright?.45:.35);bgX.beginPath();bgX.arc(s.x,s.y,s.r,0,Math.PI*2);bgX.fillStyle=s.bright?`rgba(255,240,180,${a})`:`rgba(232,200,120,${a})`;bgX.fill();});
+  shootT+=dt||16;if(shootT>nextShoot){shootT=0;nextShoot=4e3+Math.random()*8e3;shootStars.push({x:bgC.width*(.2+Math.random()*.6),y:Math.random()*bgC.height*.4,vx:-4-Math.random()*4,vy:1.5+Math.random()*2,life:1});}
+  shootStars=shootStars.filter(s=>s.life>0);
+  shootStars.forEach(s=>{bgX.save();bgX.globalAlpha=s.life;const gr=bgX.createLinearGradient(s.x,s.y,s.x-s.vx*14,s.y-s.vy*14);gr.addColorStop(0,'rgba(255,240,160,.9)');gr.addColorStop(1,'transparent');bgX.strokeStyle=gr;bgX.lineWidth=1.5;bgX.beginPath();bgX.moveTo(s.x,s.y);bgX.lineTo(s.x-s.vx*14,s.y-s.vy*14);bgX.stroke();bgX.restore();s.x+=s.vx;s.y+=s.vy;s.life-=.038;});
+  DUST.forEach(p=>{p.x+=p.vx;p.y+=p.vy;p.life+=.004;if(p.life>p.maxLife){p.x=Math.random()*bgC.width;p.y=bgC.height*.78+Math.random()*bgC.height*.22;p.life=0;}const a=(1-p.life/p.maxLife)*.28;bgX.beginPath();bgX.arc(p.x,p.y,p.r,0,Math.PI*2);bgX.fillStyle=p.col+a+')';bgX.fill();});
+  TUMBLES.forEach(t=>{t.x+=t.vx;t.rot+=t.rv;if(t.x>bgC.width+120)t.x=-120;bgX.globalAlpha=t.op;drawTW(bgX,t.x,t.y,t.r,t.rot);bgX.globalAlpha=1;});
   requestAnimationFrame(animBG);
 }
 requestAnimationFrame(animBG);
-
-// ===== FX LAYER =====
-let FX = [];
-function animFX() {
-  fxCtx.clearRect(0, 0, fxCanvas.width, fxCanvas.height);
-  FX = FX.filter(p => {
-    p.x += p.vx; p.y += p.vy; p.vy += p.gravity || 0.1; p.life--;
-    p.vx *= 0.985;
-    const a = Math.max(0, p.life / p.maxLife);
-    fxCtx.globalAlpha = a;
-    fxCtx.fillStyle = p.color;
-    fxCtx.save(); fxCtx.translate(p.x, p.y); fxCtx.rotate(p.rot || 0);
-    fxCtx.fillRect(-p.w/2, -p.h/2, p.w, p.h);
-    fxCtx.restore();
-    fxCtx.globalAlpha = 1;
-    return p.life > 0;
-  });
-  requestAnimationFrame(animFX);
-}
+function animFX(){fxX.clearRect(0,0,fxC.width,fxC.height);FX=FX.filter(p=>{p.x+=p.vx;p.y+=p.vy;p.vy+=p.g||.1;p.life--;p.vx*=.985;const a=Math.max(0,p.life/p.maxLife);fxX.globalAlpha=a;fxX.fillStyle=p.col;fxX.save();fxX.translate(p.x,p.y);fxX.rotate(p.rot||0);fxX.fillRect(-p.w/2,-p.h/2,p.w,p.h);fxX.restore();fxX.globalAlpha=1;return p.life>0;});requestAnimationFrame(animFX);}
 animFX();
+function confetti(color){const cols=[color,'#c8860a','#e8c878','#fff','#e05050','#40c8a0','#e8b040'];const cx=innerWidth/2,cy=innerHeight*.28;for(let i=0;i<75;i++){const a=Math.random()*Math.PI*2,spd=2.5+Math.random()*7;FX.push({x:cx,y:cy,vx:Math.cos(a)*spd,vy:Math.sin(a)*spd-3,w:5+Math.random()*7,h:2.5+Math.random()*3,col:cols[Math.random()*cols.length|0],rot:Math.random()*Math.PI*2,g:.1,life:90+Math.random()*50,maxLife:140});}}
+function bullets(x,y){for(let i=0;i<5;i++){const a=(Math.random()-.5)*.35;FX.push({x,y,vx:9+Math.random()*5,vy:(Math.random()-.5)*2,w:9,h:2.5,col:'#e8d060',rot:a,g:.04,life:22+Math.random()*10,maxLife:32});}for(let i=0;i<10;i++){const a=Math.random()*Math.PI*2,spd=1.5+Math.random()*3;FX.push({x,y,vx:Math.cos(a)*spd,vy:Math.sin(a)*spd,w:3.5,h:3.5,col:'#ffcc44',rot:0,g:.05,life:7+Math.random()*5,maxLife:12});}}
 
-function spawnConfetti(color) {
-  const colors = [color, '#c8860a', '#e8c878', '#ffffff', '#e05050', '#40c8a0', '#e8b040'];
-  const cx = window.innerWidth / 2, cy = window.innerHeight * 0.28;
-  for (let i = 0; i < 70; i++) {
-    const a = Math.random() * Math.PI * 2, spd = 2.5 + Math.random() * 7;
-    FX.push({
-      x: cx, y: cy,
-      vx: Math.cos(a) * spd, vy: Math.sin(a) * spd - 3,
-      w: 5 + Math.random()*7, h: 2.5 + Math.random()*3,
-      color: colors[Math.random() * colors.length | 0],
-      rot: Math.random() * Math.PI * 2,
-      gravity: 0.1,
-      life: 90 + Math.random() * 50, maxLife: 140
-    });
-  }
-}
+function doHorse(){playHorse();const el=document.createElement('div');el.style.cssText=`position:fixed;font-size:2.4rem;z-index:60;pointer-events:none;bottom:${10+Math.random()*8}vh;left:-80px;transition:left 2s linear`;el.textContent='🐎';document.body.appendChild(el);setTimeout(()=>el.style.left='110vw',50);setTimeout(()=>el.remove(),2200);}
+function doLasso(){playLasso();const el=document.createElement('div');el.style.cssText=`position:fixed;font-size:2.2rem;z-index:60;pointer-events:none;top:${20+Math.random()*35}vh;right:8vw`;el.textContent='🤠';document.body.appendChild(el);let ang=0;const iv=setInterval(()=>{ang+=14;el.style.transform=`rotate(${ang%360}deg)`;if(ang>720){clearInterval(iv);el.remove();}},18);}
+setInterval(()=>{Math.random()<.5?doHorse():doLasso();},9e3+Math.random()*7e3);
+function easterEgg(e){playGunshot();bullets(e.clientX||innerWidth*.5,e.clientY||innerHeight*.35);showToast('💥 Pan ! Tu aurais dû voir ça venir...');}
 
-function spawnBullets(x, y) {
-  for (let i = 0; i < 5; i++) {
-    const a = (Math.random() - 0.5) * 0.35;
-    FX.push({
-      x, y, vx: 9 + Math.random() * 5, vy: (Math.random() - 0.5) * 2,
-      w: 9, h: 2.5, color: '#e8d060', rot: a, gravity: 0.04,
-      life: 22 + Math.random() * 10, maxLife: 32
-    });
-  }
-  for (let i = 0; i < 10; i++) {
-    const a = Math.random() * Math.PI * 2, spd = 1.5 + Math.random() * 3;
-    FX.push({
-      x, y, vx: Math.cos(a)*spd, vy: Math.sin(a)*spd,
-      w: 3.5, h: 3.5, color: '#ffcc44', rot: 0, gravity: 0.05,
-      life: 7 + Math.random() * 5, maxLife: 12
-    });
-  }
-}
+// ========= SCREENS =========
+function show(id){document.querySelectorAll('.scr').forEach(s=>s.classList.remove('on'));document.getElementById(id).classList.add('on');window.scrollTo(0,0);}
+function goHome(){show('s-home');rsvpDone=false;document.getElementById('err').classList.remove('on');['inp-d','inp-m','inp-y'].forEach(id=>{const el=document.getElementById(id);el.value='';el.style.borderColor='';});}
+function showLock(i){cur=i;const g=GUESTS[i];document.getElementById('l-av').textContent=g.av;document.getElementById('l-name').textContent=g.name;document.getElementById('l-alias').textContent=g.alias;document.getElementById('l-prime').textContent='Prime : '+g.prime;document.getElementById('err').classList.remove('on');['inp-d','inp-m','inp-y'].forEach(id=>{const el=document.getElementById(id);el.value='';el.style.borderColor='';});show('s-lock');setTimeout(()=>document.getElementById('inp-d').focus(),350);playGunshot();bullets(innerWidth*.5,innerHeight*.45);}
 
-// ===== AMBIENT EFFECTS =====
-function doHorse() {
-  playHorse();
-  const el = document.createElement('div');
-  el.style.cssText = `position:fixed;font-size:2.4rem;z-index:60;pointer-events:none;bottom:${10+Math.random()*8}vh;left:-80px;transition:left 2s linear;`;
-  el.textContent = '🐎';
-  document.body.appendChild(el);
-  setTimeout(() => el.style.left = '110vw', 50);
-  setTimeout(() => el.remove(), 2200);
-}
-
-function doLasso() {
-  playLasso();
-  const el = document.createElement('div');
-  const top = 20 + Math.random() * 35;
-  el.style.cssText = `position:fixed;font-size:2.2rem;z-index:60;pointer-events:none;top:${top}vh;right:8vw;`;
-  el.textContent = '🤠';
-  document.body.appendChild(el);
-  let angle = 0;
-  const iv = setInterval(() => {
-    angle += 14;
-    el.style.transform = `rotate(${angle % 360}deg)`;
-    if (angle > 360 * 2) { clearInterval(iv); el.remove(); }
-  }, 18);
-}
-
-function maybeRandomFX() {
-  if (Math.random() < 0.5) doHorse(); else doLasso();
-}
-setInterval(maybeRandomFX, 9000 + Math.random() * 7000);
-
-// ===== EASTER EGG: gunshot on title tap =====
-function easterEgg(e) {
-  playGunshot();
-  const x = e.clientX || window.innerWidth * 0.5;
-  const y = e.clientY || window.innerHeight * 0.35;
-  spawnBullets(x, y);
-  showToast('💥 Pan ! T\'as failli toucher le shérif...');
-}
-
-// ===== SCREEN LOGIC =====
-function show(id) {
-  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
-  document.getElementById(id).classList.add('active');
-  window.scrollTo(0, 0);
-}
-
-function goHome() {
-  show('s-home');
-  rsvpDone = false;
-  const errEl = document.getElementById('err');
-  errEl.classList.remove('show');
-  ['inp-d','inp-m','inp-y'].forEach(id => {
-    const el = document.getElementById(id);
-    el.value = ''; el.style.borderColor = '';
-  });
-}
-
-function showLock(i) {
-  cur = i;
-  const g = GUESTS[i];
-  document.getElementById('l-av').textContent = g.av;
-  document.getElementById('l-name').textContent = g.name;
-  document.getElementById('l-alias').textContent = g.alias;
-  document.getElementById('err').classList.remove('show');
-  ['inp-d','inp-m','inp-y'].forEach(id => {
-    const el = document.getElementById(id);
-    el.value = ''; el.style.borderColor = '';
-  });
-  show('s-lock');
-  // delayed focus — more reliable on mobile
-  setTimeout(() => {
-    const inp = document.getElementById('inp-d');
-    inp.focus();
-  }, 350);
-  playGunshot();
-  spawnBullets(window.innerWidth * 0.5, window.innerHeight * 0.45);
-}
-
-function tryUnlock() {
-  const g = GUESTS[cur];
-  const d = parseInt(document.getElementById('inp-d').value) || 0;
-  const m = parseInt(document.getElementById('inp-m').value) || 0;
-  const y = parseInt(document.getElementById('inp-y').value) || 0;
-
-  if (d === g.bd.d && m === g.bd.m && y === g.bd.y) {
+function tryUnlock(){
+  const g=GUESTS[cur];
+  const d=parseInt(document.getElementById('inp-d').value)||0;
+  const m=parseInt(document.getElementById('inp-m').value)||0;
+  const y=parseInt(document.getElementById('inp-y').value)||0;
+  if(d===g.bd.d&&m===g.bd.m&&y===g.bd.y){
     playUnlock();
-    document.getElementById('i-char').textContent = g.alias;
-    document.getElementById('i-av').textContent = g.av;
-    document.getElementById('i-mission').textContent = g.mission;
-    // Reset RSVP state
-    document.getElementById('rsvp-text').textContent = 'Confirmer ma présence';
-    rsvpDone = false;
-    show('s-inv');
-    spawnConfetti(g.color);
-    showToast('🤠 Yeehaw ! Bienvenue ' + g.alias + ' !');
-    doHorse();
+    if(g.lure){
+      document.getElementById('lr-av').textContent=g.av;
+      document.getElementById('lr-name').textContent=g.name;
+      document.getElementById('lr-alias').textContent=g.alias;
+      document.getElementById('lr-detail').textContent=g.lureDetail||'';
+      document.getElementById('lr-butin').textContent=g.butin;
+      document.getElementById('rsvp-text-lure').textContent='Confirmer ma présence';
+      show('s-lure');confetti(g.color);showToast('🌾 Bienvenue leurre ! Tu es '+g.alias);doHorse();
+    } else {
+      document.getElementById('i-av').textContent=g.av;
+      document.getElementById('i-alias').textContent=g.alias;
+      document.getElementById('i-realname').textContent=g.name;
+      document.getElementById('i-crime-a').textContent=g.crimeA;
+      document.getElementById('i-crime-b').textContent=g.crimeB;
+      document.getElementById('i-prime').textContent=g.prime;
+      document.getElementById('i-butin').textContent=g.butin;
+      document.getElementById('rsvp-text').textContent='Confirmer ma présence';
+      rsvpDone=false;
+      show('s-inv');confetti(g.color);showToast('🤠 Yeehaw ! '+g.alias+' recherché(e) mort(e) ou vif/ve !');doHorse();
+    }
   } else {
     playError();
-    document.getElementById('err').classList.add('show');
-    ['inp-d','inp-m','inp-y'].forEach(id => {
-      const el = document.getElementById(id);
-      el.style.borderColor = '#e05050';
-      setTimeout(() => el.style.borderColor = '', 1400);
-    });
-    // Shake animation (CSS class)
-    const lf = document.getElementById('lock-frame');
-    lf.classList.remove('shake');
-    void lf.offsetWidth; // reflow to restart animation
-    lf.classList.add('shake');
-    setTimeout(() => lf.classList.remove('shake'), 450);
+    document.getElementById('err').classList.add('on');
+    ['inp-d','inp-m','inp-y'].forEach(id=>{const el=document.getElementById(id);el.style.borderColor='#e05050';setTimeout(()=>el.style.borderColor='',1400);});
+    const lf=document.getElementById('lk-frame');lf.classList.remove('shake');void lf.offsetWidth;lf.classList.add('shake');setTimeout(()=>lf.classList.remove('shake'),450);
   }
 }
 
-// ===== RSVP =====
-function doRSVP() {
-  if (rsvpDone) return;
-  const g = GUESTS[cur];
-  const msg = `🤠 Yeehaw ! Je serai présent(e) à la Wild West Night le 21 juin 2025 ! Mon personnage : ${g.alias} ${g.av}`;
+// ========= RSVP =========
+function buildMsg(g){return `🤠 Yeehaw ! Présent(e) à la Wild West Night le 21 juin 2025 !\nMon personnage : ${g.alias} ${g.av} — Prime : ${g.prime}`;}
+function sendRSVP(g,textElId){const msg=buildMsg(g);if(RSVP_PHONE)window.open(`https://wa.me/${RSVP_PHONE}?text=${encodeURIComponent(msg)}`,'_blank');else if(RSVP_EMAIL)window.open(`mailto:${RSVP_EMAIL}?subject=RSVP Wild West Night&body=${encodeURIComponent(msg)}`,'_blank');else{try{navigator.clipboard.writeText(msg).then(()=>showToast('📋 Message copié — envoie-le à l\'organisateur !'));}catch(e){showToast('📋 RSVP noté, hors-la-loi !');}}document.getElementById(textElId).textContent='✓ Présence confirmée !';playUnlock();confetti(g.color);}
+function doRSVP(){if(rsvpDone)return;rsvpDone=true;sendRSVP(GUESTS[cur],'rsvp-text');}
+function doRSVPLure(){sendRSVP(GUESTS[cur],'rsvp-text-lure');}
 
-  if (RSVP_PHONE) {
-    window.open(`https://wa.me/${RSVP_PHONE}?text=${encodeURIComponent(msg)}`, '_blank');
-  } else if (RSVP_EMAIL) {
-    window.open(`mailto:${RSVP_EMAIL}?subject=RSVP Wild West Night&body=${encodeURIComponent(msg)}`, '_blank');
-  } else {
-    // Clipboard fallback
-    try {
-      navigator.clipboard.writeText(msg).then(() => {
-        showToast('📋 Message copié ! Envoie-le à l\'organisateur.');
-      }).catch(() => {
-        showToast('📋 Copie le message : ' + msg.substring(0,40) + '…');
-      });
-    } catch(e) {
-      showToast('📋 RSVP noté, cowboy !');
-    }
-  }
+// ========= TOAST =========
+function showToast(msg){const t=document.getElementById('toast');t.textContent=msg;t.classList.add('on');setTimeout(()=>t.classList.remove('on'),3400);}
 
-  rsvpDone = true;
-  document.getElementById('rsvp-text').textContent = '✓ Présence confirmée !';
-  playUnlock();
-  spawnConfetti(GUESTS[cur].color);
-}
-
-// ===== TOAST =====
-function showToast(msg) {
-  const t = document.getElementById('toast');
-  t.textContent = msg;
-  t.classList.add('show');
-  setTimeout(() => t.classList.remove('show'), 3200);
-}
-
-// ===== INPUT AUTO-ADVANCE =====
-document.getElementById('inp-d').addEventListener('input', function() {
-  if (this.value.length >= 2) document.getElementById('inp-m').focus();
-});
-document.getElementById('inp-m').addEventListener('input', function() {
-  if (this.value.length >= 2) document.getElementById('inp-y').focus();
-});
-document.getElementById('inp-y').addEventListener('keydown', function(e) {
-  if (e.key === 'Enter') tryUnlock();
-});
-
-// Prevent zoom on double-tap (iOS)
-document.querySelectorAll('input').forEach(el => {
-  el.addEventListener('touchstart', e => e.stopPropagation(), {passive:true});
-});
+// ========= INPUT HELPERS =========
+document.getElementById('inp-d').addEventListener('input',function(){if(this.value.length>=2)document.getElementById('inp-m').focus();});
+document.getElementById('inp-m').addEventListener('input',function(){if(this.value.length>=2)document.getElementById('inp-y').focus();});
+document.getElementById('inp-y').addEventListener('keydown',function(e){if(e.key==='Enter')tryUnlock();});
+document.querySelectorAll('input').forEach(el=>el.addEventListener('touchstart',e=>e.stopPropagation(),{passive:true}));
 </script>
 </body>
 </html>
