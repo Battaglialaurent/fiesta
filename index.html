@@ -304,9 +304,9 @@ body::after{
           <div class="crime-text" id="i-crime-b">—</div>
         </div>
         <div class="wc-grid" style="margin-top:.9rem">
-          <div class="wc-box"><span class="wc-lbl">Date</span><span class="wc-val">21 Juin 2025</span></div>
+          <div class="wc-box"><span class="wc-lbl">Date</span><span class="wc-val">6 juin 2025</span></div>
           <div class="wc-box"><span class="wc-lbl">Heure</span><span class="wc-val">19h30</span></div>
-          <div class="wc-box"><span class="wc-lbl">Lieu</span><span class="wc-val" style="font-size:.78rem">Le Havre</span></div>
+          <div class="wc-box"><span class="wc-lbl">Lieu</span><span class="wc-val" style="font-size:.78rem">Sahurs</span></div>
           <div class="wc-box"><span class="wc-lbl">Prime (Bounty)</span><span class="wc-val prime" id="i-prime">25 000 $</span></div>
         </div>
         <div class="wc-butin">
@@ -535,7 +535,7 @@ function tryUnlock(){
 }
 
 // ========= RSVP =========
-function buildMsg(g){return `🤠 Yeehaw ! Présent(e) à la Wild West Night le 21 juin 2025 !\nMon personnage : ${g.alias} ${g.av} — Prime : ${g.prime}`;}
+function buildMsg(g){return `🤠 Yeehaw ! Présent(e) à la Wild West Night le 6 juin 2025 !\nMon personnage : ${g.alias} ${g.av} — Prime : ${g.prime}`;}
 function sendRSVP(g,textElId){const msg=buildMsg(g);if(RSVP_PHONE)window.open(`https://wa.me/${RSVP_PHONE}?text=${encodeURIComponent(msg)}`,'_blank');else if(RSVP_EMAIL)window.open(`mailto:${RSVP_EMAIL}?subject=RSVP Wild West Night&body=${encodeURIComponent(msg)}`,'_blank');else{try{navigator.clipboard.writeText(msg).then(()=>showToast('📋 Message copié — envoie-le à l\'organisateur !'));}catch(e){showToast('📋 RSVP noté, hors-la-loi !');}}document.getElementById(textElId).textContent='✓ Présence confirmée !';playUnlock();confetti(g.color);}
 function doRSVP(){if(rsvpDone)return;rsvpDone=true;sendRSVP(GUESTS[cur],'rsvp-text');}
 function doRSVPLure(){sendRSVP(GUESTS[cur],'rsvp-text-lure');}
